@@ -2,6 +2,7 @@ import React from 'react';
 import DatePicker from 'react-datepicker';
 import ReactTable from 'react-table';
 import saveAs from 'file-saver';
+import {format, parseISO} from 'date-fns';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-table/react-table.css'
@@ -19,35 +20,31 @@ export class OrdersPage extends React.Component {
 
   state = {
     orders: [],
-    startDate: '',
-    endDate: ''
+    startDate: new Date(),
+    endDate: new Date()
   }
 
   componentDidMount() {
     fetch('http://35.204.250.139:8080/api/orders')
         .then(result => result.json())
-        .then(json => this.setState({orders: json.orders})).catch(
-        error => console.error('Error:', error));
+        .then(json => this.setState({orders: json.orders}))
+        .catch(error => console.error('Error:', error));
   };
 
   handleStartDateChange = (date) => {
-    const format = require('date-fns/format');
-
-    this.setState({
-      startDate: format(date, 'YYYY-MM-DD')
-    })
-    console.log(date);
+    const parsedStartDate = parseISO(date));
+    this.setState({startDate: startDate})
+    console.log(startDate);
   }
 
   handleEndDateChange = (date) => {
-    this.setState({
-      endDate: format(date, format(date, 'YYYY-MM-DD'))
-    })
+    const parsedEndDate = parseISO(date);
+    const endDate = format(parsedEndDate, 'yyyy-MM-dd', { useAdditionalDayOfYearTokens: true });
+    this.setState({endDate: endDate})
     console.log(date);
   }
 
   downloadReport = () => {
-
     const headers = new Headers({
       'Content-Type': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
     })
@@ -66,13 +63,12 @@ export class OrdersPage extends React.Component {
   }
 
   render() {
-
     return (
         <OrdersContainer>
           <DatePickerContainer>
             <DatePickerWrapper>From
               <DatePicker
-                  dateFormat="yyyy-MM-dd"
+                  dateFormat='yyyy-MM-dd'
                   selected={this.state.startDate}
                   onChange={this.handleStartDateChange}
               />
@@ -80,7 +76,7 @@ export class OrdersPage extends React.Component {
             <DatePickerWrapper>
               To
               <DatePicker
-                  dateFormat="yyyy-MM-dd"
+                  dateFormat='yyyy-MM-dd'
                   selected={this.state.endDate}
                   onChange={this.handleEndDateChange}
               />
