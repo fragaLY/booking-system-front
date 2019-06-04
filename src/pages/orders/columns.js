@@ -17,8 +17,12 @@ export const columns = [
     }
   },
   {
+    id: 'Homes',
     Header: 'Homes',
-    accessor: 'homes.map(home => <div>{home}</div>)',
+    accessor: (order) => (
+      order.homes.filter((home, i, arr) => i = arr.indexOf(home))
+        .map((home, i, arr) => <div>{arr.length}</div>)
+    ),
     sortable: true,
     filterable: true,
     filterMethod: (filter, row) => {
