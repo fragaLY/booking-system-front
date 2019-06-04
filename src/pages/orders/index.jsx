@@ -58,13 +58,10 @@ export class OrdersPage extends React.Component {
         </DatePickerContainer>
         <ReactTable
           data={this.state.orders}
-          filterable={true}
           columns={columns}
-          sortable={true}
           defaultPageSize={10}
           showPagination={true}
           showPaginationBottom={true}
-          showPageJump={true}
           className="-striped -highlight"
         />
       </OrdersContainer>

@@ -18,17 +18,11 @@ export const columns = [
   },
   {
     id: 'Homes',
-    Header: 'Homes',
+    Header: 'Houses',
     accessor: (order) => (
       order.homes.filter((home, i, arr) => i = arr.indexOf(home))
         .map((home, i, arr) => <div>{arr.length}</div>)
     ),
-    sortable: true,
-    filterable: true,
-    filterMethod: (filter, row) => {
-      filter.value = filter.value.replace(new RegExp("[^a-zA-Z]"), "");
-      return row[filter.id].toString().startsWith(filter.value);
-    }
   },
   {
     Header: 'From',
@@ -50,20 +44,8 @@ export const columns = [
     }
   }, {
     Header: 'Cost',
-    accessor: 'cost',
-    sortable: true,
-    filterable: true,
-    filterMethod: (filter, row) => {
-      filter.value = filter.value.replace(new RegExp("[^a-zA-Z]"), "");
-      return row[filter.id].toString().startsWith(filter.value);
-    }
+    accessor: 'cost'
   }, {
     Header: 'Guests',
-    accessor: 'guests',
-    sortable: true,
-    filterable: true,
-    filterMethod: (filter, row) => {
-      filter.value = filter.value.replace(new RegExp("[^a-zA-Z]"), "");
-      return row[filter.id].toString().startsWith(filter.value);
-    }
+    accessor: 'guests'
   }];
