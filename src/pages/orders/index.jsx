@@ -2,6 +2,7 @@ import React from 'react';
 import DatePicker from 'react-datepicker';
 import ReactTable from 'react-table';
 import saveAs from 'file-saver';
+import {format, parse} from 'date-fns';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-table/react-table.css'
@@ -26,13 +27,11 @@ export class OrdersPage extends React.Component {
   componentDidMount() {
     fetch('http://35.204.250.139:8080/api/orders')
         .then(result => result.json())
-        .then(json => this.setState({orders: json.orders})).catch(
-        error => console.error('Error:', error));
+        .then(json => this.setState({orders: json.orders}))
+        .catch(error => console.error('Error:', error));
   };
 
   handleStartDateChange = (date) => {
-    const format = require('date-fns/format');
-
     this.setState({
       startDate: format(date, 'YYYY-MM-DD')
     })
@@ -41,7 +40,7 @@ export class OrdersPage extends React.Component {
 
   handleEndDateChange = (date) => {
     this.setState({
-      endDate: format(date, format(date, 'YYYY-MM-DD'))
+      endDate: format(date, 'YYYY-MM-DD')
     })
     console.log(date);
   }
