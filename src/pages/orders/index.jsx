@@ -1,11 +1,12 @@
 import React from 'react';
 import DatePicker from 'react-datepicker';
 import ReactTable from 'react-table';
-import {saveAs} from 'file-saver';
+import saveAs from 'file-saver';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-table/react-table.css'
 import './index.css';
+import {columns} from './columns';
 
 import {
   Button,
@@ -13,20 +14,13 @@ import {
   DatePickerWrapper,
   OrdersContainer
 } from './styles';
-import {columns} from './columns';
-
-const dateOptions = {
-  year: 'numeric',
-  month: 'numeric',
-  day: 'numeric'
-}
 
 export class OrdersPage extends React.Component {
 
   state = {
     orders: [],
-    startDate: undefined,
-    endDate: undefined
+    startDate: '',
+    endDate: ''
   }
 
   componentDidMount() {
@@ -37,12 +31,18 @@ export class OrdersPage extends React.Component {
   };
 
   handleStartDateChange = (date) => {
-    this.setState({startDate: date})
+    const format = require('date-fns/format');
+
+    this.setState({
+      startDate: format(date, 'YYYY-MM-DD')
+    })
     console.log(date);
   }
 
   handleEndDateChange = (date) => {
-    this.setState({endDate: date})
+    this.setState({
+      endDate: format(date, format(date, 'YYYY-MM-DD'))
+    })
     console.log(date);
   }
 
@@ -52,13 +52,8 @@ export class OrdersPage extends React.Component {
       'Content-Type': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
     })
 
-    let formattedStartDate = this.state.startDate.toISOString('en-US',
-        dateOptions).slice(10, 18);
-    let formattedEndDate = this.state.endDate.toISOString('en-US',
-        dateOptions).slice(10, 18);
-
     fetch(
-        `$http://35.204.250.139:8080/api/reports/orders?from=${formattedStartDate}&to=${formattedEndDate}`,
+        `$http://35.204.250.139:8080/api/reports/orders?from=${this.state.startDate}&to=${this.state.endDate}`,
         {headers}
     ).then((response) => {
       const name = response.headers.get('Content-Disposition').replace(
