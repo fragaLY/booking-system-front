@@ -20,7 +20,7 @@ export class OrdersPage extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://www.mocky.io/v2/5cf3d141330000a5187585ba')
+    fetch('http://35.204.250.139:8080/api/orders')
       .then(result => result.json())
       .then(json => this.setState({ orders: json.orders }))
   };
