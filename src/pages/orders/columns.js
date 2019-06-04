@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+let key = 0;
 
 export const columns = [
   {
@@ -21,7 +22,7 @@ export const columns = [
     Header: 'Houses',
     accessor: (order) => (
       order.homes.filter((home, i, arr) => i = arr.indexOf(home))
-        .map((home, i, arr) => <div>{arr.length}</div>)
+        .map((home, i, arr) => <div key={key++}>{arr.length}</div>)
     ),
   },
   {
