@@ -32,7 +32,8 @@ export class OrdersPage extends React.Component {
   };
 
   handleStartDateChange = (date) => {
-    const parsedStartDate = parseISO(date));
+    const parsedStartDate = parseISO(date);
+    const startDate = format(parsedStartDate, 'yyyy-MM-dd');
     this.setState({startDate: startDate})
     console.log(startDate);
   }
