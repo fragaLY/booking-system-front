@@ -30,39 +30,6 @@ export class UserPage extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChangeFirstName(event) {
-    this.setState({firstName: event.target.firstName})
-  }
-
-  handleChangeLastName(event) {
-    this.setState({lastName: event.target.lastName})
-  }
-
-  handleChangeEmail(event) {
-    this.setState({email: event.target.email})
-  }
-
-  handleChangePhone(event) {
-    this.setState({phone: event.target.phone})
-  }
-
-  handleChangeCountry(event) {
-    this.setState({country: event.target.country})
-  }
-
-  handleChangeCity(event) {
-    this.setState({city: event.target.city})
-  }
-
-  handleChangeCurrency(event) {
-    this.setState({currency: event.target.currency})
-  }
-
-  handleSubmit(event) {
-    alert('User is: ' + this.state.user);
-    event.preventDefault();
-  }
-
   componentDidMount() {
 
     const {profileUrl} = this.props.location.state;
@@ -102,6 +69,39 @@ export class UserPage extends React.Component {
     console.error(error, message);
   }
 
+  handleChangeFirstName(event) {
+    this.setState({firstName: event.target.firstName})
+  }
+
+  handleChangeLastName(event) {
+    this.setState({lastName: event.target.lastName})
+  }
+
+  handleChangeEmail(event) {
+    this.setState({email: event.target.email})
+  }
+
+  handleChangePhone(event) {
+    this.setState({phone: event.target.phone})
+  }
+
+  handleChangeCountry(event) {
+    this.setState({country: event.target.country})
+  }
+
+  handleChangeCity(event) {
+    this.setState({city: event.target.city})
+  }
+
+  handleChangeCurrency(event) {
+    this.setState({currency: event.target.currency})
+  }
+
+  handleSubmit(event) {
+    alert('State is: ' + this.state);
+    event.preventDefault();
+  }
+
   render() {
 
     return (
@@ -113,7 +113,7 @@ export class UserPage extends React.Component {
               <input
                   name="lastname"
                   type="text"
-                  defaultValue={'lastName'}
+                  defaultValue={this.state.defaultValue}
                   value={this.state.lastName}
                   onChange={this.handleChangeLastName}/>
             </label>
@@ -123,7 +123,7 @@ export class UserPage extends React.Component {
               <input
                   name="firstname"
                   type="text"
-                  defaultChecked={'firstName'}
+                  defaultValue={this.state.defaultValue}
                   value={this.state.firstName}
                   onChange={this.handleChangeFirstName}/>
             </label>
@@ -133,7 +133,7 @@ export class UserPage extends React.Component {
               <input
                   name="email"
                   type="email"
-                  defaultValue={'email@email.com'}
+                  defaultValue={this.state.defaultValue}
                   value={this.state.email}
                   onChange={this.handleChangeEmail}/>
             </label>
@@ -143,7 +143,7 @@ export class UserPage extends React.Component {
               <input
                   name="phone"
                   type="tel"
-                  defaultValue={'+375291111111'}
+                  defaultValue={this.state.defaultValue}
                   value={this.state.phone}
                   onChange={this.handleChangePhone}/>
             </label>
@@ -153,7 +153,7 @@ export class UserPage extends React.Component {
               <input
                   name="country"
                   type="text"
-                  defaultValue={'BY'}
+                  defaultValue={this.state.defaultValue}
                   value={this.state.country}
                   onChange={this.handleChangeCountry}/>
             </label>
@@ -163,15 +163,15 @@ export class UserPage extends React.Component {
               <input
                   name="city"
                   type="text"
-                  defaultValue={'Mogilev'}
+                  defaultValue={this.state.defaultValue}
                   value={this.state.city}
                   onChange={this.handleChangeCity}/>
             </label>
             <br/>
             <label>
               Currency:
-              <select defaultValue={'BYN'}
-                      name="currency"
+              <select name="currency"
+                      defaultValue={this.state.defaultValue}
                       value={this.state.currency}
                       onChange={this.handleChangeCurrency}>
                 <option value="BYN">BYN</option>
@@ -186,6 +186,7 @@ export class UserPage extends React.Component {
               <input
                   name="registered"
                   type="text"
+                  defaultValuedefaultValue={this.state.defaultValue}
                   value={this.state.registered.slice(0, 10)}
                   disabled/>
             </label>
