@@ -8,14 +8,14 @@ export class UserPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      country: '',
-      city: '',
-      currency: '',
-      registered: '',
+      firstName: 'firstName',
+      lastName: 'lastName',
+      email: 'email@email.com',
+      phone: '+375111111111',
+      country: 'BY',
+      city: 'Mogilev',
+      currency: 'BYN',
+      registered: new Date(),
       hasError: false,
       error: ''
     };
@@ -111,9 +111,7 @@ export class UserPage extends React.Component {
             <label>
               Lastname:
               <input
-                  name="lastname"
                   type="text"
-                  defaultValue={this.state.defaultValue}
                   value={this.state.lastName}
                   onChange={this.handleChangeLastName}/>
             </label>
@@ -121,9 +119,7 @@ export class UserPage extends React.Component {
             <label>
               Firstname:
               <input
-                  name="firstname"
                   type="text"
-                  defaultValue={this.state.defaultValue}
                   value={this.state.firstName}
                   onChange={this.handleChangeFirstName}/>
             </label>
@@ -131,9 +127,7 @@ export class UserPage extends React.Component {
             <label>
               Email:
               <input
-                  name="email"
                   type="email"
-                  defaultValue={this.state.defaultValue}
                   value={this.state.email}
                   onChange={this.handleChangeEmail}/>
             </label>
@@ -141,9 +135,7 @@ export class UserPage extends React.Component {
             <label>
               Phone:
               <input
-                  name="phone"
                   type="tel"
-                  defaultValue={this.state.defaultValue}
                   value={this.state.phone}
                   onChange={this.handleChangePhone}/>
             </label>
@@ -151,9 +143,7 @@ export class UserPage extends React.Component {
             <label>
               Country:
               <input
-                  name="country"
                   type="text"
-                  defaultValue={this.state.defaultValue}
                   value={this.state.country}
                   onChange={this.handleChangeCountry}/>
             </label>
@@ -161,18 +151,14 @@ export class UserPage extends React.Component {
             <label>
               City:
               <input
-                  name="city"
                   type="text"
-                  defaultValue={this.state.defaultValue}
                   value={this.state.city}
                   onChange={this.handleChangeCity}/>
             </label>
             <br/>
             <label>
               Currency:
-              <select name="currency"
-                      defaultValue={this.state.defaultValue}
-                      value={this.state.currency}
+              <select value={this.state.currency}
                       onChange={this.handleChangeCurrency}>
                 <option value="BYN">BYN</option>
                 <option value="RUB">RUB</option>
@@ -184,10 +170,8 @@ export class UserPage extends React.Component {
             <label>
               Registered:
               <input
-                  name="registered"
                   type="text"
-                  defaultValuedefaultValue={this.state.defaultValue}
-                  value={this.state.registered.slice(0, 10)}
+                  value={this.state.registered}
                   disabled/>
             </label>
             <br/>
