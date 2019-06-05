@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link} from "react-router-dom";
 
 export const columns = [
   {
@@ -8,8 +8,13 @@ export const columns = [
     sortable: true,
     filterable: true,
     accessor: (user) => (
-        <Link
-            to={`/api/users/${user.id}`}>
+        <Link to={
+          {
+            pathname: '/profile',
+            state: {
+              profileUrl: `${user._links.self.href}`
+            }
+          }}>
           {`${user.lastName} ${user.firstName}`}
         </Link>),
     filterMethod: (filter, row) => {
@@ -20,7 +25,7 @@ export const columns = [
     id: "Email",
     Header: 'Email',
     accessor: (user) => (
-        <a href="mailto:mail@mail.com">{user.email}</a>
+        <a href="mailto:`{$user.email}`">{user.email}</a>
     ),
     sortable: false,
     filterable: false,
@@ -32,7 +37,7 @@ export const columns = [
     id: "Phone",
     Header: 'Phone',
     accessor: (user) => (
-        <a href="callto:01234567890">{user.phone}</a>
+        <a href="callto:`{$user.phone}`">{user.phone}</a>
     ),
     sortable: false,
     filterable: false,

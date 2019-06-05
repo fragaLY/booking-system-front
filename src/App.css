@@ -1,0 +1,6 @@
+.user {
+  font: 1em sans-serif;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between
+}

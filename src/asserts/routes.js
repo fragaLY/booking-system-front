@@ -18,9 +18,5 @@ export const routes = [
   {
     text: 'Orders',
     to: '/orders'
-  },
-  {
-    text: 'Profile',
-    to: '/profile'
-  },
+  }
 ];

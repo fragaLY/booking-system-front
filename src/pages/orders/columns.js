@@ -1,5 +1,6 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link} from "react-router-dom";
+
 let key = 0;
 
 export const columns = [
@@ -9,10 +10,12 @@ export const columns = [
     sortable: true,
     filterable: true,
     accessor: (order) => (
-      <Link
-        to={`/api/users/ ${order.owner.id}`}>
-        {`${order.owner.lastName} ${order.owner.firstName}`}
-      </Link>),
+        <Link to={{
+          pathname: '/profile',
+          state: {
+            profileUrl: `${order._links.owner.href}`
+          }
+        }}>{`${order.owner.lastName} ${order.owner.firstName}`}</Link>),
     filterMethod: (filter, row) => {
       return row[filter.id].props.children.startsWith(filter.value);
     }
@@ -21,8 +24,8 @@ export const columns = [
     id: 'Homes',
     Header: 'Houses',
     accessor: (order) => (
-      order.homes.filter((home, i, arr) => i = arr.indexOf(home))
-        .map((home, i, arr) => <div key={key++}>{arr.length}</div>)
+        order.homes.filter((home, i, arr) => i = arr.indexOf(home))
+            .map((home, i, arr) => <div key={key++}>{arr.length}</div>)
     ),
   },
   {
@@ -31,7 +34,8 @@ export const columns = [
     sortable: true,
     filterable: true,
     filterMethod: (filter, row) => {
-      filter.value = filter.value.replace(new RegExp(/^(\d{4}-\d{2}-\d{3})$/), "");
+      filter.value = filter.value.replace(new RegExp(/^(\d{4}-\d{2}-\d{3})$/),
+          "");
       return row[filter.id].toString().startsWith(filter.value);
     }
   }, {
@@ -40,7 +44,8 @@ export const columns = [
     sortable: true,
     filterable: true,
     filterMethod: (filter, row) => {
-      filter.value = filter.value.replace(new RegExp(/^(\d{4}-\d{2}-\d{3})$/), "");
+      filter.value = filter.value.replace(new RegExp(/^(\d{4}-\d{2}-\d{3})$/),
+          "");
       return row[filter.id].toString().startsWith(filter.value);
     }
   }, {

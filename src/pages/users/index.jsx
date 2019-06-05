@@ -13,7 +13,7 @@ import {
   ItemsContainer
 } from '../common/styles';
 
-export class UsersPage extends React.Component {
+class UsersPage extends React.Component {
 
   state = {
     users: [],

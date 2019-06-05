@@ -29,27 +29,23 @@ export class LoadingButton extends React.Component {
           {headers}
       ).then((response) => {
 
-        switch (response.status) {
-          case 200:
-            response.blob().then((blob) => {
-              saveAs(blob, 'orders-report');
-              this.setState({
-                hasError: false,
-                error: ''
-              });
+        if (response.status === 200) {
+          response.blob().then((blob) => {
+            saveAs(blob, 'orders-report');
+            this.setState({
+              hasError: false,
+              error: ''
             });
-            break;
-          case 404:
-            response.json().then((json) => {
-              this.setState({
-                hasError: true,
-                error: json.message
-              });
+          });
+        } else {
+          response.json().then((json) => {
+            this.setState({
+              hasError: true,
+              error: json.message
             });
-            break;
-          default:
-            console.log("Default case")
+          });
         }
+
       }).then(() => this.setState({isLoading: false})
       );
     })
