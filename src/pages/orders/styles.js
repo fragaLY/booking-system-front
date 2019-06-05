@@ -12,6 +12,3 @@ export const DatePickerContainer = styled.div`
 export const DatePickerWrapper = styled.div`
   margin: 2rem;
 `;
-
-export const Button = styled.button`
-`;
