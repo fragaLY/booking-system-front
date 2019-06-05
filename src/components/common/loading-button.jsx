@@ -8,7 +8,9 @@ export class LoadingButton extends React.Component {
     super(props, context);
     this.handleClick = this.handleClick.bind(this);
     this.state = {
-      isLoading: false
+      isLoading: false,
+      hasError: false,
+      error: ''
     };
   }
 
@@ -31,13 +33,17 @@ export class LoadingButton extends React.Component {
           case 200:
             response.blob().then((blob) => {
               saveAs(blob, 'orders-report');
+              this.setState({
+                hasError: false,
+                error: ''
+              });
             });
             break;
           case 404:
             response.json().then((json) => {
               this.setState({
                 hasError: true,
-                error: "Error:" + json.message
+                error: json.message
               });
             });
             break;
@@ -45,21 +51,31 @@ export class LoadingButton extends React.Component {
             console.log("Default case")
         }
       }).then(() => this.setState({isLoading: false})
-      ).catch(error => console.error('Error:', error));
+      );
     })
   };
+
+  componentDidCatch(error, message) {
+    this.setState({
+      hasError: true,
+      error: message
+    });
+    console.error(error, message);
+  }
 
   render() {
     const {isLoading} = this.state;
 
     return (
-        <Button
-            variant="primary"
-            disabled={isLoading}
-            onClick={!isLoading ? this.handleClick : null}
-        >
-          {isLoading ? 'Loading…' : 'Download report'}
-        </Button>
+        <div>
+          <Button
+              variant="primary"
+              disabled={isLoading}
+              onClick={!isLoading ? this.handleClick : null}>
+            {isLoading ? 'Loading…' : 'Download report'}
+          </Button>
+          {this.state.hasError ? this.state.error : null}
+        </div>
     );
   }
 }

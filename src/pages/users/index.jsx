@@ -18,7 +18,9 @@ export class UsersPage extends React.Component {
   state = {
     users: [],
     startDate: new Date(),
-    endDate: new Date()
+    endDate: new Date(),
+    hasError: false,
+    error: ''
   };
 
   componentDidMount() {
@@ -36,9 +38,18 @@ export class UsersPage extends React.Component {
     this.setState({endDate: date})
   };
 
+  componentDidCatch(error, message) {
+    this.setState({
+      hasError: true,
+      error: message
+    });
+    console.error(error, message);
+  }
+
   render() {
     return (
         <ItemsContainer>
+          {this.state.hasError ? this.state.error : null}
           <DatePickerContainer>
             <DatePickerWrapper>
               From
