@@ -25,7 +25,7 @@ export const columns = [
     id: "Email",
     Header: 'Email',
     accessor: (user) => (
-        <a href="mailto:`{$user.email}`">{user.email}</a>
+        <a href={`mailto:${user.email}`}>{user.email}</a>
     ),
     sortable: false,
     filterable: false,
@@ -37,7 +37,7 @@ export const columns = [
     id: "Phone",
     Header: 'Phone',
     accessor: (user) => (
-        <a href="callto:`{$user.phone}`">{user.phone}</a>
+        <a href={`callto:${user.phone}`}>{user.phone}</a>
     ),
     sortable: false,
     filterable: false,
