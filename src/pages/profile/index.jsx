@@ -20,14 +20,7 @@ export class UserPage extends React.Component {
       error: ''
     };
 
-    this.handleChangeFirstName = this.handleChangeFirstName.bind(this);
-    this.handleChangeLastName = this.handleChangeFirstName.bind(this);
-    this.handleChangeEmail = this.handleChangeFirstName.bind(this);
-    this.handleChangePhone = this.handleChangeFirstName.bind(this);
-    this.handleChangeCountry = this.handleChangeFirstName.bind(this);
-    this.handleChangeCity = this.handleChangeFirstName.bind(this);
-    this.handleChangeCurrency = this.handleChangeFirstName.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -69,36 +62,12 @@ export class UserPage extends React.Component {
     console.error(error, message);
   }
 
-  handleChangeFirstName(event) {
-    this.setState({firstName: event.target.firstName})
-  }
-
-  handleChangeLastName(event) {
-    this.setState({lastName: event.target.lastName})
-  }
-
-  handleChangeEmail(event) {
-    this.setState({email: event.target.email})
-  }
-
-  handleChangePhone(event) {
-    this.setState({phone: event.target.phone})
-  }
-
-  handleChangeCountry(event) {
-    this.setState({country: event.target.country})
-  }
-
-  handleChangeCity(event) {
-    this.setState({city: event.target.city})
-  }
-
-  handleChangeCurrency(event) {
-    this.setState({currency: event.target.currency})
+  handleChange(evt) {
+    this.setState({[evt.target.name]: evt.target.value});
   }
 
   handleSubmit(event) {
-    alert('State is: ' + this.state);
+    alert('Firstname is: ' + this.state.firstName());
     event.preventDefault();
   }
 
@@ -112,54 +81,61 @@ export class UserPage extends React.Component {
               Lastname:
               <input
                   type="text"
+                  name="lastName"
                   value={this.state.lastName}
-                  onChange={this.handleChangeLastName}/>
+                  onChange={this.handleChange}/>
             </label>
             <br/>
             <label>
               Firstname:
               <input
                   type="text"
+                  name="firstName"
                   value={this.state.firstName}
-                  onChange={this.handleChangeFirstName}/>
+                  onChange={this.handleChange}/>
             </label>
             <br/>
             <label>
               Email:
               <input
                   type="email"
+                  name="email"
                   value={this.state.email}
-                  onChange={this.handleChangeEmail}/>
+                  onChange={this.handleChange}/>
             </label>
             <br/>
             <label>
               Phone:
               <input
                   type="tel"
+                  name="phone"
                   value={this.state.phone}
-                  onChange={this.handleChangePhone}/>
+                  onChange={this.handleChange}/>
             </label>
             <br/>
             <label>
               Country:
               <input
                   type="text"
+                  name="country"
                   value={this.state.country}
-                  onChange={this.handleChangeCountry}/>
+                  onChange={this.handleChange}/>
             </label>
             <br/>
             <label>
               City:
               <input
                   type="text"
+                  name="city"
                   value={this.state.city}
-                  onChange={this.handleChangeCity}/>
+                  onChange={this.handleChange}/>
             </label>
             <br/>
             <label>
               Currency:
-              <select value={this.state.currency}
-                      onChange={this.handleChangeCurrency}>
+              <select name="currency"
+                      value={this.state.currency}
+                      onChange={this.handleChange}>
                 <option value="BYN">BYN</option>
                 <option value="RUB">RUB</option>
                 <option value="USD">USD</option>
@@ -171,6 +147,7 @@ export class UserPage extends React.Component {
               Registered:
               <input
                   type="text"
+                  name="registered"
                   value={this.state.registered}
                   disabled/>
             </label>
