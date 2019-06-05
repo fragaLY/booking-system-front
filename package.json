@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "date-fns": "^2.0.0-alpha.27",
     "file-saver": "^2.0.2",
     "normalize.css": "^8.0.1",
     "react": "^16.8.6",
