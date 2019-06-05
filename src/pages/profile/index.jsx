@@ -62,13 +62,45 @@ export class UserPage extends React.Component {
     console.error(error, message);
   }
 
-  handleChange(evt) {
-    this.setState({[evt.target.name]: evt.target.value});
+  handleChange(event) {
+    this.setState({[event.target.name]: event.target.value});
   }
 
-  handleSubmit(event) {
-    alert('Firstname is: ' + this.state.firstName());
-    event.preventDefault();
+  handleSubmit() {
+
+    const {profileUrl} = this.props.location.state;
+
+    fetch(profileUrl, {
+      method: 'put',
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: `{"firstName":${this.state.firstName},
+              "lastName":${this.state.lastName},
+              "email":${this.state.email},
+              "phone":${this.state.phone},
+              "country":${this.state.country},
+              "city":${this.state.city},
+              "currency":${this.state.currency}`
+    }).then((response) => {
+
+      if (response.status !== 204) {
+        return response.json().then((json) => {
+          this.setState({
+            hasError: true,
+            error: json.message
+          });
+        });
+      } else {
+        this.setState({
+          hasError: false,
+          error: ''
+        });
+      }
+
+    }).catch(error => {
+      console.error('Error:', error);
+    });
   }
 
   render() {
