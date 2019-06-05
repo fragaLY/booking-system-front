@@ -1,52 +1,68 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-let key = 0;
 
 export const columns = [
   {
-    id: "Owner",
-    Header: 'Owner',
+    id: "Name",
+    Header: 'Name',
     sortable: true,
     filterable: true,
-    accessor: (order) => (
-      <Link
-        to={`/api/users/ ${order.owner.id}`}>
-        {`${order.owner.lastName} ${order.owner.firstName}`}
-      </Link>),
+    accessor: (user) => (
+        <Link
+            to={`/api/users/${user.id}`}>
+          {`${user.lastName} ${user.firstName}`}
+        </Link>),
     filterMethod: (filter, row) => {
       return row[filter.id].props.children.startsWith(filter.value);
     }
   },
   {
-    id: 'Homes',
-    Header: 'Houses',
-    accessor: (order) => (
-      order.homes.filter((home, i, arr) => i = arr.indexOf(home))
-        .map((home, i, arr) => <div key={key++}>{arr.length}</div>)
+    id: "Email",
+    Header: 'Email',
+    accessor: (user) => (
+        <a href="mailto:mail@mail.com">{user.email}</a>
     ),
+    sortable: false,
+    filterable: false,
+    filterMethod: (filter, row) => {
+      return row[filter.id].props.children.startsWith(filter.value);
+    }
   },
   {
-    Header: 'From',
-    accessor: 'from',
+    id: "Phone",
+    Header: 'Phone',
+    accessor: (user) => (
+        <a href="callto:01234567890">{user.phone}</a>
+    ),
+    sortable: false,
+    filterable: false,
+    filterMethod: (filter, row) => {
+      return row[filter.id].props.children.startsWith(filter.value);
+    }
+  }, {
+    Header: 'Country',
+    accessor: 'country',
     sortable: true,
     filterable: true,
     filterMethod: (filter, row) => {
-      filter.value = filter.value.replace(new RegExp(/^\d{4}-\d{2}-\d{2}$/), "");
-      return row[filter.id].toString().startsWith(filter.value);
+      return row[filter.id].props.children.startsWith(filter.value);
     }
   }, {
-    Header: 'To',
-    accessor: 'to',
+    Header: 'City',
+    accessor: 'city',
     sortable: true,
     filterable: true,
     filterMethod: (filter, row) => {
-      filter.value = filter.value.replace(new RegExp(/^\d{4}-\d{2}-\d{2}$/), "");
-      return row[filter.id].toString().startsWith(filter.value);
+      return row[filter.id].props.children.startsWith(filter.value);
     }
   }, {
-    Header: 'Cost',
-    accessor: 'cost'
-  }, {
-    Header: 'Guests',
-    accessor: 'guests'
+    Header: 'Registered',
+    accessor: 'registered',
+    sortable: true,
+    filterable: true,
+    filterMethod: (filter, row) => {
+      filter.value = filter.value.replace(new RegExp(/^(\d{4}-\d{2}-\d{3})$/),
+          "");
+      return row[filter.id].toString().startsWith(filter.value);
+    }
   }];

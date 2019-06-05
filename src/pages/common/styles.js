@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const OrdersContainer = styled.div`
+export const ItemsContainer = styled.div`
   font-size: 1.6rem;
 `;
 

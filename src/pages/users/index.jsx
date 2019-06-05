@@ -13,18 +13,18 @@ import {
   ItemsContainer
 } from '../common/styles';
 
-export class OrdersPage extends React.Component {
+export class UsersPage extends React.Component {
 
   state = {
-    orders: [],
+    users: [],
     startDate: new Date(),
     endDate: new Date()
   };
 
   componentDidMount() {
-    fetch('http://35.204.250.139:8080/api/orders')
+    fetch('http://35.204.250.139:8080/api/users')
         .then(result => result.json())
-        .then(json => this.setState({orders: json.orders}))
+        .then(json => this.setState({users: json.users}))
         .catch(error => console.error('Error:', error));
   };
 
@@ -57,16 +57,17 @@ export class OrdersPage extends React.Component {
               />
             </DatePickerWrapper>
             <LoadingButton from={this.state.startDate} to={this.state.endDate}
-                           url={'http://35.204.250.139:8080/api/reports/orders'}/>
+                           url={'http://35.204.250.139:8080/api/reports/users'}/>
           </DatePickerContainer>
 
           <ReactTable
-              data={this.state.orders}
+              data={this.state.users}
               columns={columns}
               defaultPageSize={10}
               showPagination={true}
               className="-striped -highlight"
           />
+
         </ItemsContainer>
     );
   }

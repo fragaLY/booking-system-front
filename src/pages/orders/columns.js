@@ -31,7 +31,7 @@ export const columns = [
     sortable: true,
     filterable: true,
     filterMethod: (filter, row) => {
-      filter.value = filter.value.replace(new RegExp(/^\d{4}-\d{2}-\d{2}$/), "");
+      filter.value = filter.value.replace(new RegExp(/^(\d{4}-\d{2}-\d{3})$/), "");
       return row[filter.id].toString().startsWith(filter.value);
     }
   }, {
@@ -40,7 +40,7 @@ export const columns = [
     sortable: true,
     filterable: true,
     filterMethod: (filter, row) => {
-      filter.value = filter.value.replace(new RegExp(/^\d{4}-\d{2}-\d{2}$/), "");
+      filter.value = filter.value.replace(new RegExp(/^(\d{4}-\d{2}-\d{3})$/), "");
       return row[filter.id].toString().startsWith(filter.value);
     }
   }, {
