@@ -56,8 +56,9 @@ export const columns = [
       return row[filter.id].props.children.startsWith(filter.value);
     }
   }, {
+    id: 'Registered',
     Header: 'Registered',
-    accessor: 'registered',
+    accessor: (user) => user.registered.slice(0, 10),
     sortable: true,
     filterable: true,
     filterMethod: (filter, row) => {
