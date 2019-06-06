@@ -1,6 +1,6 @@
 export const routes = [
   {
-    text: 'Book',
+    text: 'Booking',
     to: '/book'
   },
   {

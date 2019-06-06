@@ -8,14 +8,7 @@ export class UserPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: 'firstName',
-      lastName: 'lastName',
-      email: 'email@email.com',
-      phone: '+375111111111',
-      country: 'BY',
-      city: 'Mogilev',
-      currency: 'BYN',
-      registered: new Date(),
+      user: {},
       hasError: false,
       error: ''
     };
@@ -32,14 +25,7 @@ export class UserPage extends React.Component {
           if (response.status === 200) {
             return response.json().then((json) => {
               this.setState({
-                firstName: json.firstName,
-                lastName: json.lastName,
-                email: json.email,
-                phone: json.phone,
-                country: json.country,
-                city: json.city,
-                currency: json.currency,
-                registered: json.registered,
+                user: json.user,
                 hasError: false,
                 error: ''
               });
@@ -75,13 +61,13 @@ export class UserPage extends React.Component {
       headers: {
         "Content-type": "application/json"
       },
-      body: `{"firstName":${this.state.firstName},
-              "lastName":${this.state.lastName},
-              "email":${this.state.email},
-              "phone":${this.state.phone},
-              "country":${this.state.country},
-              "city":${this.state.city},
-              "currency":${this.state.currency}`
+      body: `{"firstName":${this.state.user.firstName},
+              "lastName":${this.state.user.lastName},
+              "email":${this.state.user.email},
+              "phone":${this.state.user.phone},
+              "country":${this.state.user.country},
+              "city":${this.state.user.city},
+              "currency":${this.state.user.currency}`
     }).then((response) => {
 
       if (response.status !== 204) {
@@ -114,7 +100,7 @@ export class UserPage extends React.Component {
               <input
                   type="text"
                   name="lastName"
-                  value={this.state.lastName}
+                  value={this.state.user.lastName}
                   onChange={this.handleChange}/>
             </label>
             <br/>
@@ -123,7 +109,7 @@ export class UserPage extends React.Component {
               <input
                   type="text"
                   name="firstName"
-                  value={this.state.firstName}
+                  value={this.state.user.firstName}
                   onChange={this.handleChange}/>
             </label>
             <br/>
@@ -132,7 +118,7 @@ export class UserPage extends React.Component {
               <input
                   type="email"
                   name="email"
-                  value={this.state.email}
+                  value={this.state.user.email}
                   onChange={this.handleChange}/>
             </label>
             <br/>
@@ -141,7 +127,7 @@ export class UserPage extends React.Component {
               <input
                   type="tel"
                   name="phone"
-                  value={this.state.phone}
+                  value={this.state.user.phone}
                   onChange={this.handleChange}/>
             </label>
             <br/>
@@ -150,7 +136,7 @@ export class UserPage extends React.Component {
               <input
                   type="text"
                   name="country"
-                  value={this.state.country}
+                  value={this.state.user.country}
                   onChange={this.handleChange}/>
             </label>
             <br/>
@@ -159,14 +145,14 @@ export class UserPage extends React.Component {
               <input
                   type="text"
                   name="city"
-                  value={this.state.city}
+                  value={this.state.user.city}
                   onChange={this.handleChange}/>
             </label>
             <br/>
             <label>
               Currency:
               <select name="currency"
-                      value={this.state.currency}
+                      value={this.state.user.currency}
                       onChange={this.handleChange}>
                 <option value="BYN">BYN</option>
                 <option value="RUB">RUB</option>
@@ -180,7 +166,7 @@ export class UserPage extends React.Component {
               <input
                   type="text"
                   name="registered"
-                  value={this.state.registered}
+                  value={this.state.user.registered}
                   disabled/>
             </label>
             <br/>
