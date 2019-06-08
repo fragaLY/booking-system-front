@@ -2,6 +2,12 @@ import React from 'react';
 import saveAs from 'file-saver';
 import Button from 'react-bootstrap/Button';
 
+const contentTypeProperty = 'Content-Type';
+const docxContentType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+
+const fromPathVariable = '?from=';
+const toPathVariable = '&to=';
+
 export class LoadingButton extends React.Component {
 
   constructor(props, context) {
@@ -17,15 +23,18 @@ export class LoadingButton extends React.Component {
   handleClick = () => {
 
     const {from, to, url} = this.props;
+
     this.setState({isLoading: true}, () => {
 
       const headers = new Headers({
-        'Content-Type': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+          contentTypeProperty : docxContentType
       });
 
+      const fromValue = from ? new Date(from).toISOString().slice(0, 10) : '';
+      const toValue = to ? new Date(to).toISOString().slice(0, 10) : '';
+
       fetch(
-          url.concat('?from=', from.toISOString().slice(0, 10),
-              '&to=', to.toISOString().slice(0, 10)),
+          url.concat(fromPathVariable, fromValue, toPathVariable, toValue),
           {headers}
       ).then((response) => {
 

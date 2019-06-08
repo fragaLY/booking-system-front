@@ -44,7 +44,7 @@ export class UsersPage extends React.Component {
       const fromValue = from ? new Date(from).toISOString().slice(0, 10) : '';
       const toValue = to ? new Date(to).toISOString().slice(0, 10) : '';
 
-      fetch(usersUrl.concat(fromPathVariable).concat(fromValue).concat(toPathVariable).concat(toValue))
+      fetch(usersUrl.concat(fromPathVariable, fromValue).concat(toPathVariable, toValue))
           .then(result => result.json())
           .then(json => this.setState({users: json.users}))
           .catch(error => console.error(error));
@@ -58,7 +58,7 @@ export class UsersPage extends React.Component {
       const fromValue = from ? new Date(from).toISOString().slice(0, 10) : '';
       const toValue = to ? new Date(to).toISOString().slice(0, 10) : '';
 
-      fetch(usersUrl.concat(fromPathVariable).concat(fromValue).concat(toPathVariable).concat(toValue))
+      fetch(usersUrl.concat(fromPathVariable, fromValue).concat(toPathVariable, toValue))
           .then(result => result.json())
           .then(json => this.setState({users: json.users}))
           .catch(error => console.error(error));
