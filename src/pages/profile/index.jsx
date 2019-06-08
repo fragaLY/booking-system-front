@@ -77,17 +77,14 @@ export class UserPage extends React.Component {
       registered: this.state.registered,
       role: this.state.role
     };
-    const user2 = JSON.stringify(user);
-    console.log(user2);
 
-    this.loadUserOnServer(user2);
-
+    this.loadUserOnServer(JSON.stringify(user), 'PUT');
   }
 
-  loadUserOnServer = (user) => {
+  loadUserOnServer = (user, method) => {
     const { profileUrl } = this.props.location.state;
     fetch(profileUrl, {
-      method: 'PUT',
+      method: method,
       headers: {
         "Content-type": "application/json"
       },
@@ -109,7 +106,7 @@ export class UserPage extends React.Component {
         }
       })
       .catch(error => {
-        console.error('Error:', error);
+        console.error(error);
       });
   }
 
@@ -193,7 +190,8 @@ export class UserPage extends React.Component {
               disabled
             />
           </label>
-          <br />
+          <br/>
+          <br/>
           <input type="submit" value="Save" />
         </form>
       </div>

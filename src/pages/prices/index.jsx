@@ -6,6 +6,7 @@ import '../common/index.css';
 import {columns} from './columns';
 
 import {ItemsContainer} from '../common/styles';
+const pricesUrl = 'http://192.168.0.108:8080/api/prices';
 
 export class PricesPage extends React.Component {
 
@@ -18,10 +19,10 @@ export class PricesPage extends React.Component {
   abortController = new AbortController();
 
   componentDidMount() {
-    fetch('http://192.168.0.108:8080/api/prices', {signal: this.abortController.signal})
+    fetch(pricesUrl, {signal: this.abortController.signal})
         .then(result => result.json())
         .then(json => this.setState({prices: json.prices}))
-        .catch(error => console.error('Error:', error));
+        .catch(error => console.error(error));
   };
 
   componentDidCatch(error, message) {
