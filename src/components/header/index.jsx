@@ -25,7 +25,7 @@ export class Header extends React.Component {
                 to={route.to}
                 children={route.text}
                 key={route.text}
-                activeStyle={{ color: 'black', backgroundColor: '#e0e0e0' }}
+                activeStyle={{ color: '#0071ba', backgroundColor: '#fafafa' }}
               />
             )
           }

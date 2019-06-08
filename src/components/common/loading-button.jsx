@@ -2,7 +2,6 @@ import React from 'react';
 import saveAs from 'file-saver';
 import Button from 'react-bootstrap/Button';
 
-const contentTypeProperty = 'Content-Type';
 const docxContentType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
 
 const fromPathVariable = '?from=';
@@ -27,7 +26,7 @@ export class LoadingButton extends React.Component {
     this.setState({isLoading: true}, () => {
 
       const headers = new Headers({
-          contentTypeProperty : docxContentType
+          'Content-Type' : docxContentType
       });
 
       const fromValue = from ? new Date(from).toISOString().slice(0, 10) : '';

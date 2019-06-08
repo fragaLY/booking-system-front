@@ -8,8 +8,19 @@ import {woodenImages} from './woodenImages';
 export class HousesPage extends React.Component {
     render() {
         return (
-            <ImageGallery name='brick-house' items={brickImages}/>
-            // <ImageGallery name='wooden-house' items={woodenImages}/>
+            <React.Fragment>
+            <ImageGallery lazyLoad={true}
+                          showBullets={true}
+                          name='brick-house'
+                          items={brickImages}
+            />
+            <ImageGallery name='wooden-house'
+                          lazyLoad={true}
+                          showBullets={true}
+                          name='brick-house'
+                          items={woodenImages}
+            />
+            </React.Fragment>
         )
     }
 }

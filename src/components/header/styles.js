@@ -6,7 +6,7 @@ export const HeaderWrapper = styled.div`
   flex-flow: row nowrap;
   width: 100%;
   height: 6rem;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
 `;
 
 export const Logo = styled.div`
