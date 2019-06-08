@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import 'normalize.css';
 import './App.css';
 import { Header } from './components/header';
+import { Footer } from './components/footer';
 import { MainPage } from './pages/main';
 import { OrdersPage } from './pages/orders';
 import { UsersPage } from "./pages/users";
@@ -24,6 +25,7 @@ export class App extends React.Component {
             <Route exact path='/profile' component={UserPage} />
             <Route exact path='/prices' component={PricesPage} />
           </Switch>
+          <Footer />
         </BrowserRouter>
       </div>
     );
