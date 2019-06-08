@@ -15,6 +15,7 @@ export class UserPage extends React.Component {
       city: 'Mogilev',
       currency: 'BYN',
       registered: new Date(),
+      role: 'surfer',
       hasError: false,
       error: ''
     };
@@ -93,14 +94,18 @@ export class UserPage extends React.Component {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       email: this.state.email,
-      phone: this.state.email,
+      phone: this.state.phone,
       country: this.state.country,
       city: this.state.city,
-      currency: this.state.country,
+      currency: this.state.currency,
       registered: this.state.registered,
+      role: this.state.role
     };
+    const user2 = JSON.stringify(user);
+    console.log(user2);
 
-    this.loadUserOnServer(user);
+    this.loadUserOnServer(user2);
+
   }
 
   loadUserOnServer = (user) => {
@@ -110,13 +115,7 @@ export class UserPage extends React.Component {
       headers: {
         "Content-type": "application/json"
       },
-      body: `{"firstName":${user.firstName},
-              "lastName":${user.lastName},
-              "email":${user.email},
-              "phone":${user.phone},
-              "country":${user.country},
-              "city":${user.city},
-              "currency":${user.currency}`
+      body: user
     })
       .then((response) => {
         if (response.status !== 204) {
