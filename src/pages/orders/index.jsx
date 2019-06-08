@@ -61,7 +61,7 @@ export class OrdersPage extends React.Component {
           </DatePickerContainer>
 
           <ReactTable
-              data={this.state.orders}
+              data={this.state.orders.sort((a,b) => {return a.from < b.from ? - 1: 0})}
               columns={columns}
               defaultPageSize={10}
               showPagination={true}
