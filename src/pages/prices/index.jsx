@@ -43,7 +43,7 @@ export class PricesPage extends React.Component {
           <ReactTable
               data={this.state.prices}
               columns={columns}
-              defaultPageSize={10}
+              defaultPageSize={this.state.prices.size}
               showPagination={false}
               className="-striped -highlight"
           />
