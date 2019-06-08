@@ -15,8 +15,10 @@ export class PricesPage extends React.Component {
     error: ''
   };
 
+  abortController = new AbortController();
+
   componentDidMount() {
-    fetch('http://192.168.0.108:8080/api/prices')
+    fetch('http://192.168.0.108:8080/api/prices', {signal: this.abortController.signal})
         .then(result => result.json())
         .then(json => this.setState({prices: json.prices}))
         .catch(error => console.error('Error:', error));
@@ -28,6 +30,10 @@ export class PricesPage extends React.Component {
       error: message
     });
     console.error(error, message);
+  }
+
+  componentWillUnmount() {
+    this.abortController.abort();
   }
 
   render() {
