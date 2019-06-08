@@ -13,6 +13,12 @@ import {
   ItemsContainer
 } from '../common/styles';
 
+const ordersURl = 'http://192.168.0.108:8080/api/orders';
+const ordersReportUrl = 'http://192.168.0.108:8080/api/reports/orders';
+const dateFormat = 'yyyy-MM-dd';
+const fromPathVariable = '?from=';
+const toPathVariable = '&to=';
+
 export class OrdersPage extends React.Component {
 
   state = {
@@ -22,46 +28,72 @@ export class OrdersPage extends React.Component {
   };
 
   componentDidMount() {
-    fetch('http://192.168.0.108:8080/api/orders')
+    fetch(ordersURl)
         .then(result => result.json())
         .then(json => this.setState({orders: json.orders}))
-        .catch(error => console.error('Error:', error));
+        .catch(error => console.error(error));
   };
 
-  handleStartDateChange = (date) => {
-    this.setState({startDate: date})
+  handleStartDateChange = (from) => {
+    this.setState({startDate: from});
+
+    const to = this.state.endDate;
+    const fromValue = from ? new Date(from).toISOString().slice(0, 10) : '';
+    const toValue = to ? new Date(to).toISOString().slice(0, 10) : '';
+
+    fetch(ordersURl.concat(fromPathVariable).concat(fromValue).concat(toPathVariable).concat(toValue))
+        .then(result => result.json())
+        .then(json => this.setState({orders: json.orders}))
+        .catch(error => console.error(error));
   };
 
-  handleEndDateChange = (date) => {
-    this.setState({endDate: date})
+  handleEndDateChange = (to) => {
+    this.setState({endDate: to});
+
+    const from = this.state.startDate;
+    const fromValue = from ? new Date(from).toISOString().slice(0, 10) : '';
+    const toValue = to ? new Date(to).toISOString().slice(0, 10) : '';
+
+    fetch(ordersURl.concat(fromPathVariable).concat(fromValue).concat(toPathVariable).concat(toValue))
+        .then(result => result.json())
+        .then(json => this.setState({orders: json.orders}))
+        .catch(error => console.error(error));
   };
 
   render() {
+
+    let orders = this.state.orders !== undefined ? this.state.orders.sort((a, b) => {
+        return a.from < b.from ? -1 : 0
+    }) : [];
+
+    const startDate = this.state.startDate;
+    const endDate = this.state.endDate;
+
     return (
         <ItemsContainer>
           <DatePickerContainer>
             <DatePickerWrapper>
               From
               <DatePicker
-                  dateFormat='yyyy-MM-dd'
-                  selected={this.state.startDate}
+                  dateFormat={dateFormat}
+                  selected={startDate}
                   onChange={this.handleStartDateChange}
               />
             </DatePickerWrapper>
             <DatePickerWrapper>
               To
               <DatePicker
-                  dateFormat='yyyy-MM-dd'
-                  selected={this.state.endDate}
+                  dateFormat={dateFormat}
+                  selected={endDate}
                   onChange={this.handleEndDateChange}
               />
             </DatePickerWrapper>
-            <LoadingButton from={this.state.startDate} to={this.state.endDate}
-                           url={'http://192.168.0.108:8080/api/reports/orders'}/>
           </DatePickerContainer>
 
+          <LoadingButton from={startDate} to={endDate} url={ordersReportUrl}/>
+
           <ReactTable
-              data={this.state.orders.sort((a,b) => {return a.from < b.from ? - 1: 0})}
+              data={orders}
               columns={columns}
               defaultPageSize={10}
               showPagination={true}

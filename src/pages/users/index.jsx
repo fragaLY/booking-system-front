@@ -78,8 +78,8 @@ export class UsersPage extends React.Component {
           return a.registered > b.registered ? -1 : 0
       }) : [];
 
-      let startDate = this.state.startDate;
-      let endDate = this.state.endDate;
+      const startDate = this.state.startDate;
+      const endDate = this.state.endDate;
 
       return (
         <ItemsContainer>
