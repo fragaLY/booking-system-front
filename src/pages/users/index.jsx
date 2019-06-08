@@ -17,8 +17,8 @@ export class UsersPage extends React.Component {
 
   state = {
     users: [],
-    startDate: new Date(),
-    endDate: new Date(),
+    startDate: '',
+    endDate: '',
     hasError: false,
     error: ''
   };
@@ -72,7 +72,7 @@ export class UsersPage extends React.Component {
           </DatePickerContainer>
 
           <ReactTable
-              data={this.state.users}
+              data={this.state.users.sort((a,b) => {return a.registered > b.registered ? -1 : 0})}
               columns={columns}
               defaultPageSize={10}
               showPagination={true}

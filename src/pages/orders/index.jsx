@@ -17,8 +17,8 @@ export class OrdersPage extends React.Component {
 
   state = {
     orders: [],
-    startDate: new Date(),
-    endDate: new Date()
+    startDate: '',
+    endDate: ''
   };
 
   componentDidMount() {
