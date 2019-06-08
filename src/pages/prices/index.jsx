@@ -41,7 +41,7 @@ export class PricesPage extends React.Component {
         <ItemsContainer>
           {this.state.hasError ? this.state.error : null}
           <ReactTable
-              data={this.state.prices}
+              data={this.state.prices.sort((a,b) => {return a.price < b.price ? -1 : 0})}
               columns={columns}
               defaultPageSize={this.state.prices.size}
               showPagination={false}
