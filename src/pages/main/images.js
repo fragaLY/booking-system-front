@@ -1,51 +1,12 @@
-const pathToMainOriginal = '/static/main/original/';
-const pathToMainThumbnail = '../assets/main/thumbnail/';
-
 export const images = [
     {
-        original: pathToMainOriginal.concat('1.jpg'),
-        thumbnail: pathToMainThumbnail.concat('1_tn.jpg'),
+        original: 'https://previews.dropbox.com/p/thumb/AAfCvDp3HcdvV7BNCWJX7-qVHEO1itjom30SB9GIRG6_vdjbzAK3fKoywFvJ5oAv1y2vQyghqTdwjv4KF0OWyxmtNg_nucOxNy1aMBDbOxr8b5OK18Rq-_0NSVZ9ZH0dF1PYIbjrEiRMv9RGkJpL29VE3MYSY5z4q3ZVe9UibMImWNBYKBzS07Odp1F0j-6RTOTgRtx2vyHk-8SdJwnjx0nnl7VmEsqB5gjPKEUryVRcVuLO1MMlxRyJU8xRnVHXsHFc7rpezcn7Utns59Po_oPp0G-ds3l-OirDMDG1CppZ4PUvIh54q2_ajztSW0zf47zPoN-VhGixGpdOA1lEV6BI/p.jpeg?fv_content=true&size_mode=5',
+        thumbnail: 'https://previews.dropbox.com/p/thumb/AAekyKJOUvygdohysPAYpuCQnXMdFftig0oqwZmz1e19Fziffza8xSUgyBKPLGrW8t_OhupTqwj-qY9-A0vpyXrd8MjkwjDV10V-gxYqH-aX1UsaxH2OuirKwQ6q-rsfLCtvMDlGaKvOdEgmbnsIa6cFskm6WYZn3pSgr6knf0uerA7IumRLhatXeV74jo4v-R_xmuCeZMhM1HDknN46RzeBzMV-5BmsE7x1Qu4iRZTUJptQULNUixoMNbBcedFBhJ25oDIZaPt4YLlPrar2lMq5VH7DEZAkj9hxl8kNLb0w-Z1aQH3b0jU_kRf9m72w7MEB6peCia3YuQiEIgEgHBm7/p.jpeg?fv_content=true&size_mode=5',
     },    {
-        original: pathToMainOriginal.concat('2.jpg'),
-        thumbnail: pathToMainThumbnail.concat('2_tn.jpg'),
+        original: 'https://previews.dropbox.com/p/thumb/AAdGulexz3wUKgns5-7pz5HKjhcPnSGpfiknELsQGUnqGd0wdOgTm04Ud1WnePIMUc0CTwUkEfTHVjgDeJ3vE4z_3vgu19WWIsNRaN0_0YhDIhf0vsZJHNu3qtGZYukyu84iiEgB762AE0KSJYmKK8bW4ZFx6T6hub1PdQM70aBR4gbEX0VpLOtzw4j-am9Vg2V3KYcGXR38Z87zYaiIWjS01O1h4o0j48SjHXsQsZRYk8_ioiSpH-E3HAoVWgb21Qn_SpLrFb-bOPHFdoOxEPYrA4rAGCTCuklrOo3cAJCSXtCkmtT-b5iQVUIwzTN7yU1PBMrKFs8YyQXhoF7QznjD/p.jpeg?fv_content=true&size_mode=5',
+        thumbnail: 'https://previews.dropbox.com/p/thumb/AAf05Q6J9U07PQJLwBp2fy4-GQgWWiApfS1IY79cTOeheNleJ_uEWvO-X5QJ1WCyC5BAFs0bfZN5-Xy7kADz6W_YB265J9o35Y_GjZLYL2FA4siXltGrZ90HX1Yq55NhNXV4NyQMqbJI9faw2cGBjxGt2ow_TeCRNWlhSfAlpMIBmWWOuv0akEh1i1BYeb8crJxqdJqpgpZR17FtDTfFjvXBGAPtXRYA8kEEf6kPI0gRklVKDf7WEnSvnQwkISOYEKgQ289cCsyeiU2gNb8EdEsbEzekFQaTUDVEEkqfqX62FyyR0--qSKOG2VCAa8Zd8XBRKY7G7n002IcqKJDpOUww/p.jpeg?fv_content=true&size_mode=5',
     },    {
-        original: pathToMainOriginal.concat('3.jpg'),
-        thumbnail: pathToMainThumbnail.concat('3_tn.jpg'),
-    },    {
-        original: pathToMainOriginal.concat('4.jpg'),
-        thumbnail: pathToMainThumbnail.concat('4_tn.jpg'),
-    },    {
-        original: pathToMainOriginal.concat('5.jpg'),
-        thumbnail: pathToMainThumbnail.concat('5_tn.jpg'),
-    },    {
-        original: pathToMainOriginal.concat('6.jpg'),
-        thumbnail: pathToMainThumbnail.concat('6_tn.jpg'),
-    },    {
-        original: pathToMainOriginal.concat('7.jpg'),
-        thumbnail: pathToMainThumbnail.concat('7_tn.jpg'),
-    },    {
-        original: pathToMainOriginal.concat('8.jpg'),
-        thumbnail: pathToMainThumbnail.concat('8_tn.jpg'),
-    },    {
-        original: pathToMainOriginal.concat('9.jpg'),
-        thumbnail: pathToMainThumbnail.concat('9_tn.jpg'),
-    },    {
-        original: pathToMainOriginal.concat('10.jpg'),
-        thumbnail: pathToMainThumbnail.concat('10_tn.jpg'),
-    },    {
-        original: pathToMainOriginal.concat('11.jpg'),
-        thumbnail: pathToMainThumbnail.concat('11_tn.jpg'),
-    },    {
-        original: pathToMainOriginal.concat('12.jpg'),
-        thumbnail: pathToMainThumbnail.concat('12_tn.jpg'),
-    },    {
-        original: pathToMainOriginal.concat('13.jpg'),
-        thumbnail: pathToMainThumbnail.concat('13_tn.jpg'),
-    },    {
-        original: pathToMainOriginal.concat('14.jpg'),
-        thumbnail: pathToMainThumbnail.concat('14_tn.jpg'),
-    },    {
-        original: pathToMainOriginal.concat('15.jpg'),
-        thumbnail: pathToMainThumbnail.concat('15_tn.jpg')
+        original: 'https://previews.dropbox.com/p/thumb/AAcGzRgmAZTEMdzUNgUGeroOtN7GJNIERdQH3taK-WwVcL_kScKFQ7ZqkmnuTY4uf1wKdmUK2jk5cZto7clt9HuLwSzBbaOUHaxpoI-BkSoqHDhyKR82_iXgNM1Fb-8Q_bIsFk3AwuI6nfUaE5p_mYI7S_p9OwXyCFCkYECoYuOsu4pqNjCV19ah7mnJSlURtEbtr7OiFHXnX7_Mw7INah5GYoMvuUg-PC7kRkLy2Atb0irB8O4cjPBMtMJCIZ7JiYkxZ6E1YBk5OECOLagMp1kbtWQOG1HJUCjbQWuzSKc1BvzRPcsUCZNmSWpIh3CjDS4bXeGR5IW4n_Zq0q1qYDIU/p.jpeg?fv_content=true&size_mode=5',
+        thumbnail: 'https://previews.dropbox.com/p/thumb/AAdHjoQw_36cIWEFVC-3wsdDZp15omaI9cWrxWJcButzcrQyLzl9fuhnxRcauQCqF9O1SY5yOP_V4hZb16okO1uZ9ax3CQtIH-hnDmL8g_bfLvkmgLOxbocpzOstKV-n21TGHzzXzg49zOB96mB-ulrZ1DqK7ItoSQV2XmSYFRiWDbEMy1uz5u0MqqP4vH3xHnKLYpK4Dkr8MKw2Qr7GzNRWHACJzndL41EIp0D57klYy799uPui1J2D35HbHLyFTxjaID4EfYVi2pVvAMSQMEvD0tmrVVOFqDHrK2L9aEnXWzDzfd0m7P6tIu0sBkgipQk_CuFc3kFw_ZqVVrAyNFqS/p.jpeg?fv_content=true&size_mode=5',
     }
 ]
