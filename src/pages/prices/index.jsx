@@ -16,7 +16,7 @@ export class PricesPage extends React.Component {
   };
 
   componentDidMount() {
-    fetch('http://35.204.250.139:8080/api/prices')
+    fetch('http://192.168.0.108:8080/api/prices')
         .then(result => result.json())
         .then(json => this.setState({prices: json.prices}))
         .catch(error => console.error('Error:', error));

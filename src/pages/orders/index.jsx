@@ -22,7 +22,7 @@ export class OrdersPage extends React.Component {
   };
 
   componentDidMount() {
-    fetch('http://35.204.250.139:8080/api/orders')
+    fetch('http://192.168.0.108:8080/api/orders')
         .then(result => result.json())
         .then(json => this.setState({orders: json.orders}))
         .catch(error => console.error('Error:', error));
@@ -57,7 +57,7 @@ export class OrdersPage extends React.Component {
               />
             </DatePickerWrapper>
             <LoadingButton from={this.state.startDate} to={this.state.endDate}
-                           url={'http://35.204.250.139:8080/api/reports/orders'}/>
+                           url={'http://192.168.0.108:8080/api/reports/orders'}/>
           </DatePickerContainer>
 
           <ReactTable
