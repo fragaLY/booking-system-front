@@ -59,32 +59,8 @@ export class UserPage extends React.Component {
     console.error(error, message);
   }
 
-  handleFirstNameChange = (e) => {
-    this.setState({ firstName: e.target.value })
-  }
-
-  handleLastNameChange = (e) => {
-    this.setState({ lastName: e.target.value })
-  }
-
-  handleEmailChange = (e) => {
-    this.setState({ email: e.target.value })
-  }
-
-  handlePhoneChange = (e) => {
-    this.setState({ phone: e.target.value })
-  }
-
-  handleCountryChange = (e) => {
-    this.setState({ country: e.target.value })
-  }
-
-  handleCityChange = (e) => {
-    this.setState({ city: e.target.value })
-  }
-
-  handleCurrencyChange = (e) => {
-    this.setState({ currency: e.target.value })
+  handleChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   handleSubmit = (e) => {
@@ -148,7 +124,7 @@ export class UserPage extends React.Component {
               type="text"
               name="lastName"
               value={this.state.lastName}
-              onChange={this.handleLastNameChange} />
+              onChange={this.handleChange} />
           </label>
           <br />
           <label>
@@ -157,7 +133,7 @@ export class UserPage extends React.Component {
               type="text"
               name="firstName"
               value={this.state.firstName}
-              onChange={this.handleFirstNameChange} />
+              onChange={this.handleChange} />
           </label>
           <br />
           <label>
@@ -166,7 +142,7 @@ export class UserPage extends React.Component {
               type="email"
               name="email"
               value={this.state.email}
-              onChange={this.handleEmailChange} />
+              onChange={this.handleChange} />
           </label>
           <br />
           <label>
@@ -175,7 +151,7 @@ export class UserPage extends React.Component {
               type="tel"
               name="phone"
               value={this.state.phone}
-              onChange={this.handlePhoneChange} />
+              onChange={this.handleChange} />
           </label>
           <br />
           <label>
@@ -184,7 +160,7 @@ export class UserPage extends React.Component {
               type="text"
               name="country"
               value={this.state.country}
-              onChange={this.handleCountryChange} />
+              onChange={this.handleChange} />
           </label>
           <br />
           <label>
@@ -193,14 +169,14 @@ export class UserPage extends React.Component {
               type="text"
               name="city"
               value={this.state.city}
-              onChange={this.handleCityChange} />
+              onChange={this.handleChange} />
           </label>
           <br />
           <label>
             Currency:
               <select name="currency"
               value={this.state.currency}
-              onChange={this.handleCurrencyChange}>
+              onChange={this.handleChange}>
               <option value="BYN">BYN</option>
               <option value="RUB">RUB</option>
               <option value="USD">USD</option>
