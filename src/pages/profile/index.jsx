@@ -48,7 +48,7 @@ export class UserPage extends React.Component {
           })
         }
       })
-      .catch(error => console.error("Error:", error))
+      .catch(error => console.error(error))
   }
 
   componentDidCatch(error, message) {
@@ -61,7 +61,7 @@ export class UserPage extends React.Component {
 
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
-  }
+  };
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -79,7 +79,7 @@ export class UserPage extends React.Component {
     };
 
     this.loadUserOnServer(JSON.stringify(user), 'PUT');
-  }
+  };
 
   loadUserOnServer = (user, method) => {
     const { profileUrl } = this.props.location.state;
@@ -108,7 +108,7 @@ export class UserPage extends React.Component {
       .catch(error => {
         console.error(error);
       });
-  }
+  };
 
   render() {
     return (
