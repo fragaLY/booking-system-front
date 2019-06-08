@@ -88,9 +88,11 @@ export class OrdersPage extends React.Component {
                   onChange={this.handleEndDateChange}
               />
             </DatePickerWrapper>
+
+            <LoadingButton from={startDate} to={endDate} url={ordersReportUrl}/>
+
           </DatePickerContainer>
 
-          <LoadingButton from={startDate} to={endDate} url={ordersReportUrl}/>
 
           <ReactTable
               data={orders}
