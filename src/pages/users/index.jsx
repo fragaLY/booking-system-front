@@ -13,6 +13,12 @@ import {
   ItemsContainer
 } from '../common/styles';
 
+const usersUrl = 'http://192.168.0.108:8080/api/users';
+const usersReportUrl = 'http://192.168.0.108:8080/api/reports/users';
+const dateFormat = 'yyyy-MM-dd';
+const fromPathVariable = '?from=';
+const toPathVariable = '&to=';
+
 export class UsersPage extends React.Component {
 
   state = {
@@ -24,18 +30,38 @@ export class UsersPage extends React.Component {
   };
 
   componentDidMount() {
-    fetch('http://192.168.0.108:8080/api/users')
+    fetch(usersUrl)
         .then(result => result.json())
         .then(json => this.setState({users: json.users}))
-        .catch(error => console.error('Error:', error));
+        .catch(error => console.error(error));
   };
 
-  handleStartDateChange = (date) => {
-    this.setState({startDate: date})
+  handleStartDateChange = (from) => {
+      this.setState({startDate: from});
+
+      const to = this.state.endDate;
+
+      const fromValue = from ? new Date(from).toISOString().slice(0, 10) : '';
+      const toValue = to ? new Date(to).toISOString().slice(0, 10) : '';
+
+      fetch(usersUrl.concat(fromPathVariable).concat(fromValue).concat(toPathVariable).concat(toValue))
+          .then(result => result.json())
+          .then(json => this.setState({users: json.users}))
+          .catch(error => console.error(error));
   };
 
-  handleEndDateChange = (date) => {
-    this.setState({endDate: date})
+  handleEndDateChange = (to) => {
+      this.setState({endDate: to});
+
+      const from = this.state.startDate;
+
+      const fromValue = from ? new Date(from).toISOString().slice(0, 10) : '';
+      const toValue = to ? new Date(to).toISOString().slice(0, 10) : '';
+
+      fetch(usersUrl.concat(fromPathVariable).concat(fromValue).concat(toPathVariable).concat(toValue))
+          .then(result => result.json())
+          .then(json => this.setState({users: json.users}))
+          .catch(error => console.error(error));
   };
 
   componentDidCatch(error, message) {
@@ -47,36 +73,38 @@ export class UsersPage extends React.Component {
   }
 
   render() {
-    return (
+
+      let users = this.state.users !== undefined ? this.state.users.sort((a, b) => {
+          return a.registered > b.registered ? -1 : 0
+      }) : [];
+
+      let startDate = this.state.startDate;
+      let endDate = this.state.endDate;
+
+      return (
         <ItemsContainer>
           {this.state.hasError ? this.state.error : null}
           <DatePickerContainer>
             <DatePickerWrapper>
               From
-              <DatePicker
-                  dateFormat='yyyy-MM-dd'
-                  selected={this.state.startDate}
+              <DatePicker dateFormat={dateFormat} selected={startDate}
                   onChange={this.handleStartDateChange}
               />
             </DatePickerWrapper>
             <DatePickerWrapper>
               To
-              <DatePicker
-                  dateFormat='yyyy-MM-dd'
-                  selected={this.state.endDate}
+              <DatePicker dateFormat={dateFormat} selected={endDate}
                   onChange={this.handleEndDateChange}
               />
             </DatePickerWrapper>
-            <LoadingButton from={this.state.startDate} to={this.state.endDate}
-                           url={'http://192.168.0.108:8080/api/reports/users'}/>
+            <LoadingButton from={startDate} to={endDate} url={usersReportUrl}/>
           </DatePickerContainer>
 
           <ReactTable
-              data={this.state.users.sort((a,b) => {return a.registered > b.registered ? -1 : 0})}
+              data={users}
               columns={columns}
               defaultPageSize={10}
               showPagination={true}
-              className="-striped -highlight"
           />
 
         </ItemsContainer>
