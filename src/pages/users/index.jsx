@@ -13,8 +13,8 @@ import {
   ItemsContainer
 } from '../common/styles';
 
-const usersUrl = 'http://192.168.0.108:8080/api/users';
-const usersReportUrl = 'http://192.168.0.108:8080/api/reports/users';
+const usersUrl = 'http://35.204.250.139:8080/api/users';
+const usersReportUrl = 'http://35.204.250.139:8080/api/reports/users';
 const dateFormat = 'yyyy-MM-dd';
 const fromPathVariable = '?from=';
 const toPathVariable = '&to=';

@@ -6,7 +6,7 @@ import '../common/index.css';
 import {columns} from './columns';
 
 import {ItemsContainer} from '../common/styles';
-const pricesUrl = 'http://192.168.0.108:8080/api/prices';
+const pricesUrl = 'http://35.204.250.139:8080/api/prices';
 
 export class PricesPage extends React.Component {
 
