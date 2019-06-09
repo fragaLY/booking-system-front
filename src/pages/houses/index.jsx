@@ -14,10 +14,9 @@ export class HousesPage extends React.Component {
                           name='brick-house'
                           items={brickImages}
             />
-            <ImageGallery name='wooden-house'
-                          lazyLoad={true}
+            <ImageGallery lazyLoad={true}
                           showBullets={true}
-                          name='brick-house'
+                          name='wooden-house'
                           items={woodenImages}
             />
             </React.Fragment>
