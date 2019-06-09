@@ -9,13 +9,11 @@ export class HousesPage extends React.Component {
     render() {
         return (
             <React.Fragment>
-            <ImageGallery lazyLoad={true}
-                          showBullets={true}
+            <ImageGallery showBullets={true}
                           name='brick-house'
                           items={brickImages}
             />
-            <ImageGallery lazyLoad={true}
-                          showBullets={true}
+            <ImageGallery showBullets={true}
                           name='wooden-house'
                           items={woodenImages}
             />

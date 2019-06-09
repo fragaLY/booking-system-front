@@ -7,8 +7,7 @@ import {images} from './images';
 export class MainPage extends React.Component {
   render() {
     return (
-        <ImageGallery lazyLoad={true}
-                      showBullets={true}
+        <ImageGallery showBullets={true}
                       autoPlay={true}
                       slideDuration={3000}
                       items={images} />
