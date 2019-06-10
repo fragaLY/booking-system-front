@@ -1,12 +1,12 @@
 export const brickImages = [
     {
-        original: 'https://uc07cb28307388615c7d7b9996a0.previews.dropboxusercontent.com/p/thumb/AAdqC65oTnfN2Lhm-3vhEY3ndlySbByTmWmDGAjJvFSocIYNMvfTMaI2UKf9T232bIM-2HRNWjEuyZJC_M0YNN3sNdnTPfxeSycbpz1HG7sG9C_oVSMwphHT8a1-IZdAqpEDJViYbC7SWaH-DiynHdgwkbp5bglZ6Qr5oB96A7w2kVpRYdkMI1qOiU3vxiuWWbDsYWCpQUTYnQ1KJMORHYHXRJTr3ZwJRuIHG0ZRqj4c890uxkIpOGahaHW9_drGodUXXy0959VSeYd6rAB0TMkJNGEkX88PAoAo7pbZBiRk9Jmamya_WpQqQ1PH0WeYvUwP8QZZjwZ3joCL0jHP-YAiCYF0J_hJYhdz1caYEUN5Z04cQJ9ZDI1yjEJ8L_adD_g/p.jpeg?fv_content=true&size_mode=5',
-        thumbnail: 'https://uc8e6a95f71afe42a4d0aa7074c0.previews.dropboxusercontent.com/p/thumb/AAce1_0FGegzbzVEA3b9_I2jD61xUmPoKX6UgMXxDhT-vaWO7Wjt-cZL9yy2I_bZiyBUViY6Oj1NcIe2KWDnWbcbkzeUf7rpUvznzmq5Dxj4ufv98PCQPKU2m4r9B4ai7SMGSo8uiUoUHxtttOo5E0jiBr2X-D-y61OtSoA7lmV9jZmwQyIDtWudFKO-YBrGBT2u2blIHhURu9vYk5Hl7QAODsDgw3bEJ4SwWWFRzRgLbh_mCoHgmyMn9Zqs9Le3kWxPkgPWyoMJR5tpLHRTzwFu3NWuBPk25cp4_7fUaMZhNzC5j6s4-I_gJ9PdwGj8phwXJj5_H8f_jxy_T0t6J9JCUDFloA51TTMDTn-Pf_vau8C-inm71JWrl8B8UEmWjLc/p.jpeg?fv_content=true&size_mode=5'
-    },    {
-        original: 'https://ucdd7a61e42804c62bd9baa77680.previews.dropboxusercontent.com/p/thumb/AAcOuI88hiK_TFl-Px2mvp6chuBz3bpsK4wI1xOKWldm4Cd7W8_1G80aak-WV39r9_6FmzQrwuqG-0nZk0k-llr34trWugPxM6mPrCwWQds5pR6r7KM029QnZmg-t9o-NDAq18UrmU3F_P-qbNE8PS0Ww7Y-P0Sq2hTUyMmtwRhCr1Y4cnN7V2FTfsfKORChX7oAkKfBIcM6F-TqvykNg42nf3QDvUOjLJNKZev0XRTT8TDYkVrZyvGKUf2LBhVnUdYBZ7yLkwFwA5Ao4vC-ddnZjfkcARqtVCB39VJOhX_p17YcK48NhffOEFqRb_wfioVHFp-rXbI7qbhxwFiVFSRGuv7rUdr48omvqsW5o1RNJZvngoScFatwgqOuAuALPRA/p.jpeg?fv_content=true&size_mode=5',
-        thumbnail: 'https://uccaee57a9204fae24586a0acbb9.previews.dropboxusercontent.com/p/thumb/AAftPln-WynK4C26lVSUrkz_k8gCrjN7_cRrOms-OlVPNzEtVvMOxo-t0J3AeEzDmgfPLyr6mq6DIFCS21xpd5PnPJzK7RfAft-ETqgasqXPueaI48h7U3idoxDwii5AmpV3OWD3hUSDgotNX5Fkvqc0W8eM8Fm2S2cjSL8Ss6w4QkejqQ2T7LU-ypBIsnvdTLci2W3mta5zTcXFxChBIkfiJqoXaTMQW19TiOX5BHmVNF56TMXd4EUT0sYLehK10CTvOzmd3axdzWSSYbWE7-pOLtll_YN52ubtTyB0TytA3xb1Xq72zGTh-3yVZdgEtxGajwSU1-ZK2jIr8STA43GOlLVDCZlfFXYkLiWr8-5j8MI5KACEGH-g26QMSplNSmw/p.jpeg?fv_content=true&size_mode=5'
-    },    {
-        original: 'https://uc8980db8fc86d1800fa920e688d.previews.dropboxusercontent.com/p/thumb/AAcGjXtODuyWxIpzZ5f6VBQJDkhNfNWYWYC7t7oqVo8souIUesTthDejE_zjc4qjh8N1akhxI40nJodtS9vond7lX4oPHFANVg1oxSdm6ynbFycNgcJvFVZPMQ5_RTnc9-PSvkq_76_PYnQ332RW3hVJKgipZFB2oNYLNir4vW2dwoJdhYoJQg_BtTPP6R_qhlYA9rB0uehNiTBbY4ikVWDnS352DwQ5zKLdAKEBZoUFPuaZlrQb00Tau_NoON5LWXY7gN0AlrJ3n87shIVGOWy52o27jVFiiz0e8P-DTTSBQ-YIDCJ_HOIENC70JiWHEGgHMyyblTVLDQtPRdsOODsOYvFVlEBzznYvdlkR6pLbPwS9UHExYd2-Jom0zCIy-JU/p.jpeg?fv_content=true&size_mode=5',
-        thumbnail: 'https://uc615188ad99d11b38f9e44029a7.previews.dropboxusercontent.com/p/thumb/AAeABvaDU2CK8mf4JBJo3EpaoNj0aBP6IGwwPKbDm70WJlnRG5Pbl5VaX3dDOgbeUIS8UEMEitH81a2En1H8J_Yee4_6FZTQejKetpiEBDkyDA6D5dutJtJjQptOa_Zof-bpqeQ1x2XDVUPQ3k9QLGkIAblH3MHaW6oep4Myy260UOKNtxxMpwdBS9qat2dH8zWtSyHCB_OjDKvmxGdPrydMSwBK4As1MkhezYqQg7XbOZ4byoQFPBeGsqF4szWxOi6TgjBAcUq-UmH9qWQF67y8Z3lwymExatrgSZ28kQD4uCr61PNJVPqurkR9tEELzNymqnrr1TRXZx7XqM-xwrCLo7b0rYqOrMJkr4DEEtnrT0BeOFjr9cLE9yljE_nh4NU/p.jpeg?fv_content=true&size_mode=5'
+        original: 'https://res.cloudinary.com/dtrrqlva8/image/upload/v1560156514/booking-system/houses/brick/original/1_euad4o.jpg',
+        thumbnail: 'https://res.cloudinary.com/dtrrqlva8/image/upload/v1560156570/booking-system/houses/brick/thumbnail/1_tn_c7eeil.jpg'
+    },{
+        original: 'https://res.cloudinary.com/dtrrqlva8/image/upload/v1560156514/booking-system/houses/brick/original/2_mzimm2.jpg',
+        thumbnail: 'https://res.cloudinary.com/dtrrqlva8/image/upload/v1560156570/booking-system/houses/brick/thumbnail/2_tn_rbulns.jpg'
+    },{
+        original: 'https://res.cloudinary.com/dtrrqlva8/image/upload/v1560156513/booking-system/houses/brick/original/3_ro21vc.jpg',
+        thumbnail: 'https://res.cloudinary.com/dtrrqlva8/image/upload/v1560156570/booking-system/houses/brick/thumbnail/3_tn_wkirqz.jpg'
     }
 ];

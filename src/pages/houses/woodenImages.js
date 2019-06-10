@@ -1,12 +1,12 @@
 export const woodenImages = [
     {
-        original: 'https://uc02ab0513f6c0a854200e44e8f4.previews.dropboxusercontent.com/p/thumb/AAf6NBncDTZuxhfob3Y-x-3UguyXZDKtViQrJFC21QUUSzTpW5YhmETELQ6M2pw3nSjisKmqpLekbn6kYkbnx9wGpy13fP4CgB1mqRn6SJ9AHDE3BtardeocE-5eAocbQOcUaXiIKRdAVD84u7GCIRsFQVADOenQ8y5oDoczqIuIvM4eVjiecwXnxUBkuJ_WFQAKN2wJU87ZNm1slyKxTSI5Wu8qbEnZeKLLxDiMUy613vVIs1b5DR6eEstn6u47avHiwZj9FqmUkuar5G2HLJn7pihV61_AwvBl05Aq3n-TKwyLDO-mSevo1fWUBLnazTntp_jMjCyXBlKOd6pRjE3I7Va6OR6YIety8CbRdtyzR6mB7gGN4Kxe5ioqSAjN5KY/p.jpeg?fv_content=true&size_mode=5',
-        thumbnail: 'https://uc2d663cde9264b78d5ea28757f6.previews.dropboxusercontent.com/p/thumb/AAealM0Z6OlVOPlUnkr2kN0uOlBwJ8ldbvy6h6DuFE8BVekIo8k-STbJQoxP2D8arGQ1uTGieEbVvCASJ17GKgGxVQoJUV7PVxP-GHGxS7KLQcbuPn540uQ2JbtV4ZYjFle7VX31LrOsV1oTsh96X8Lync0HKriCXgDSvH7RKC3Dn9OuaZu9DjoYaSBz80qez6W-h1vzejYZrGjRgmMIofVNvmkaWmPxbPxIuzxQFzrAzTic1IwcGvyDHS1-oIpLqvebOnh2IPV8hHOmIUgEPvzMtyPGcpjTtxH2mmFCmYTowab9Asdw007LfyS9GsSy76UBLkBcaUNtmBJLR4GlXv-2fQw_P1kviXOujkA3BkN3idC-4b7PApRN4IrRXvQjLD8/p.jpeg?fv_content=true&size_mode=5'
-    },    {
-        original: 'https://ucb6f0c587b4974086fbe18b45ba.previews.dropboxusercontent.com/p/thumb/AAdlCrD1yIcU0mg5bZvLFqvm6f_IAmpAwLOpEll8VEXUyEgZpppeUJdE47yyVnJptgvbSf5IxTemqubxu885dEnJZbQ2Skf1t2n4m7T0vSQxGs1LdZOmQesKekEo8f5AC8xEMr70FMA3H8kSr6pR2ESpV_wFMEpFcoA-Fq08MI8cCH5jQIdmYfIOeU6Zd_tJBJcmARF8qcS2x9w4ennGnsCkJjJu4oHtChIHUVBmWmAL0UKJkIR18CTChLYOvx_Fkes0wzskrVZj-N1MWCMheYGKYyLAwSXdcWdGRTPQhKw4azCZkySxevGQeb8g3CERco4Qn70v6szMJVmAK3HieJigofB_diqDi1AuQv1tco2Es58gEBcvGRfI--dxyWCKi_k/p.jpeg?fv_content=true&size_mode=5',
-        thumbnail: 'https://ucc5178c1ddeeb61902f8ffc3ec1.previews.dropboxusercontent.com/p/thumb/AAcj4b185tZVl84Cb8yxpH-Qf1doPZ-1AEFcMJSZrz4hAzEgXirqzMcxrcnGJlV_7p1b8gyGuV4z6kYc6NZ4m-I1viIqxdX_FzqhDbGSREM-rF19-xVjxLjPpNhgLKIxIzqftDiDXrEacWOLUDF1_56wY_Ysoovmo3q8LdvscF01Q7OkhTjgMpfQAUAFxntpnO0N0eIw34j7PxBMyrxVDCGbb-6yz-G8YESXQtYHp0UR7sWI22Nz8F746WSu7_8lwbP54n8OZaNGhYGXNR1XUBO3hfjhD9VEb6RKvyXFSzVnKGgtgKdVQj98lN7oIT1s2sJlv2K75XIsECfuB_xQgrrCoUYo_7l5bMgURzWsE-ORhaygRoNPSO6UxqxWYHZc8_0/p.jpeg?fv_content=true&size_mode=5'
-    },    {
-        original: 'https://uc710a352a5a9a633f37fa9b14bd.previews.dropboxusercontent.com/p/thumb/AAcrMBo10QSs7tCYt2_B_Epve7mdngqhPkIYQZHEltU5_5LIC7S7AY74X-p-qBgrP1BsUbTWDvKy48k78wIn7NsssJSz5R2rjH8FwUn5HCrq0hqbk-n5sTp4yqNmvOLKUhMu5wWMywB0QYS00aVo8SsHZS2pykSEzE69reWNtnazn2Fmo-8Ef8R7JvC5uM9H74qWPz-OAWYrIG-gATNOEMi9Z1U7Bho5xj21c2r8AX-pjMc1exM-erwbR4uh1E-c91xtoYU4gFiulv8Q777wHA1lTUAvaeFNEu6Q915SZd_FVqsNmgtZOR2zpPXTMZbf_0o5cIWjyu9nRE2ITxkxGHA1Kz0f7tDE8wZZTIjfQtovdMiPMGhynk2upG7HpeZF8l8/p.jpeg?fv_content=true&size_mode=5',
-        thumbnail: 'https://uc1aa4c1ffa44077ab12147a976e.previews.dropboxusercontent.com/p/thumb/AAftmykL9Nj3tp3arabFx8UhcCg0nn2MwhbOOXQUJOOEcA8M94Fkx8ul8nC84Za6NmHDx9w_6sN_FORUUiiLd5F8rTrd8pqYTgEiiDihM7cD0-8BN-e_g-FzEP6fxSlqBHcNERmgkOPdkqp8DhozrV63oJLzieBnEnkj4XWPtj9kliEKxXkWtB3YWoYAwB1nro-uaTdvjOM_W7DjIRJ-t0qLAptPiH8uCq731FCW9_YKgCxcsVj8FlKzON_PMZQ5wA4P5e9Bo6nchfPP-VvknaRyzMQY64fyg7f5771grZh0Cy-9l5UtzKqIfIQeu-6nJ42ZHVRypvVCTcZJ2kQyU7cSnAMVRSUaOUVnuoB_yWQ8-_o5gw55Ef__GkrvYmnA8kw/p.jpeg?fv_content=true&size_mode=5'
+        original: 'https://res.cloudinary.com/dtrrqlva8/image/upload/v1560156613/booking-system/houses/wooden/original/1_rwqx14.jpg',
+        thumbnail: 'https://res.cloudinary.com/dtrrqlva8/image/upload/v1560156669/booking-system/houses/wooden/thumbnail/1_tn_b8epd4.jpg'
+    },  {
+        original: 'https://res.cloudinary.com/dtrrqlva8/image/upload/v1560156613/booking-system/houses/wooden/original/2_m3hskj.jpg',
+        thumbnail: 'https://res.cloudinary.com/dtrrqlva8/image/upload/v1560156669/booking-system/houses/wooden/thumbnail/2_tn_xxza0y.jpg'
+    },  {
+        original: 'https://res.cloudinary.com/dtrrqlva8/image/upload/v1560156616/booking-system/houses/wooden/original/3_nuu2qr.jpg',
+        thumbnail: 'https://res.cloudinary.com/dtrrqlva8/image/upload/v1560156669/booking-system/houses/wooden/thumbnail/3_tn_stdw1e.jpg'
     }
 ];

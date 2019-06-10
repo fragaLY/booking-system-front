@@ -48,3 +48,5 @@ If you want to push changes to repository use this command.
 ### `docker run -p 80:80 fragaly/booking-system:front`
 
 If you want to run docker container use this command.
+
+### The [storage](https://cloudinary.com) for images and videos
