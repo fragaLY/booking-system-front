@@ -153,7 +153,7 @@ export class UserPage extends React.Component {
                         id="">Name</span>
                     </div>
                     <input type="text" name="lastName"
-                           className="form-control col-lg-1"
+                           className="form-control col-lg-2"
                            placeholder="lastName"
                            aria-label="lastName"
                            value={this.state.lastName}
@@ -162,7 +162,7 @@ export class UserPage extends React.Component {
                            required="required"/>
                     <input type="text"
                            name="firstName"
-                           className="form-control col-lg-1"
+                           className="form-control col-lg-2"
                            placeholder="firstName"
                            aria-label="firstName"
                            value={this.state.firstName}

@@ -42,7 +42,8 @@ export class OrdersPage extends React.Component {
     const fromValue = from ? new Date(from).toISOString().slice(0, 10) : '';
     const toValue = to ? new Date(to).toISOString().slice(0, 10) : '';
 
-    fetch(ordersURl.concat(fromPathVariable, fromValue).concat(toPathVariable, toValue))
+    fetch(ordersURl.concat(fromPathVariable, fromValue).concat(toPathVariable,
+        toValue))
         .then(result => result.json())
         .then(json => this.setState({orders: json.orders}))
         .catch(error => console.error(error));
@@ -55,7 +56,8 @@ export class OrdersPage extends React.Component {
     const fromValue = from ? new Date(from).toISOString().slice(0, 10) : '';
     const toValue = to ? new Date(to).toISOString().slice(0, 10) : '';
 
-    fetch(ordersURl.concat(fromPathVariable, fromValue).concat(toPathVariable, toValue))
+    fetch(ordersURl.concat(fromPathVariable, fromValue).concat(toPathVariable,
+        toValue))
         .then(result => result.json())
         .then(json => this.setState({orders: json.orders}))
         .catch(error => console.error(error));
@@ -63,9 +65,10 @@ export class OrdersPage extends React.Component {
 
   render() {
 
-    let orders = this.state.orders !== undefined ? this.state.orders.sort((a, b) => {
-        return a.from < b.from ? -1 : 0
-    }) : [];
+    let orders = this.state.orders !== undefined ? this.state.orders.sort(
+        (a, b) => {
+          return a.from < b.from ? -1 : 0
+        }) : [];
 
     const startDate = this.state.startDate;
     const endDate = this.state.endDate;
@@ -73,24 +76,43 @@ export class OrdersPage extends React.Component {
     return (
         <ItemsContainer>
           <DatePickerContainer>
+
             <DatePickerWrapper>
-              From
-              <DatePicker
-                  dateFormat={dateFormat}
-                  selected={startDate}
-                  onChange={this.handleStartDateChange}
-              />
-            </DatePickerWrapper>
-            <DatePickerWrapper>
-              To
-              <DatePicker
-                  dateFormat={dateFormat}
-                  selected={endDate}
-                  onChange={this.handleEndDateChange}
-              />
+              <div className="form-group">
+                <div className="input-group input-group-default">
+                  <div className="input-group-prepend">
+                  <span className="input-group-text"
+                        id="basic-addon1">FROM</span>
+                  </div>
+                  <DatePicker
+                      dateFormat={dateFormat}
+                      selected={startDate}
+                      onChange={this.handleStartDateChange}
+                  />
+                </div>
+              </div>
             </DatePickerWrapper>
 
-            <LoadingButton from={startDate} to={endDate} url={ordersReportUrl}/>
+            <DatePickerWrapper>
+              <div className="form-group">
+                <div className="input-group input-group-default">
+                  <div className="input-group-prepend">
+                  <span className="input-group-text"
+                        id="basic-addon1">TO</span>
+                  </div>
+                  <DatePicker
+                      dateFormat={dateFormat}
+                      selected={endDate}
+                      onChange={this.handleEndDateChange}
+                  />
+                </div>
+              </div>
+            </DatePickerWrapper>
+
+            <DatePickerWrapper>
+              <LoadingButton from={startDate} to={endDate}
+                             url={ordersReportUrl}/>
+            </DatePickerWrapper>
 
           </DatePickerContainer>
 

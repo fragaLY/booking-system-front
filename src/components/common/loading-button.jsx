@@ -2,6 +2,8 @@ import React from 'react';
 import saveAs from 'file-saver';
 import Button from 'react-bootstrap/Button';
 
+import './index.css';
+
 const docxContentType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
 
 const fromPathVariable = '?from=';

@@ -38,31 +38,33 @@ export class UsersPage extends React.Component {
   };
 
   handleStartDateChange = (from) => {
-      this.setState({startDate: from});
+    this.setState({startDate: from});
 
-      const to = this.state.endDate;
+    const to = this.state.endDate;
 
-      const fromValue = from ? new Date(from).toISOString().slice(0, 10) : '';
-      const toValue = to ? new Date(to).toISOString().slice(0, 10) : '';
+    const fromValue = from ? new Date(from).toISOString().slice(0, 10) : '';
+    const toValue = to ? new Date(to).toISOString().slice(0, 10) : '';
 
-      fetch(usersUrl.concat(fromPathVariable, fromValue).concat(toPathVariable, toValue))
-          .then(result => result.json())
-          .then(json => this.setState({users: json.users}))
-          .catch(error => console.error(error));
+    fetch(usersUrl.concat(fromPathVariable, fromValue).concat(toPathVariable,
+        toValue))
+        .then(result => result.json())
+        .then(json => this.setState({users: json.users}))
+        .catch(error => console.error(error));
   };
 
   handleEndDateChange = (to) => {
-      this.setState({endDate: to});
+    this.setState({endDate: to});
 
-      const from = this.state.startDate;
+    const from = this.state.startDate;
 
-      const fromValue = from ? new Date(from).toISOString().slice(0, 10) : '';
-      const toValue = to ? new Date(to).toISOString().slice(0, 10) : '';
+    const fromValue = from ? new Date(from).toISOString().slice(0, 10) : '';
+    const toValue = to ? new Date(to).toISOString().slice(0, 10) : '';
 
-      fetch(usersUrl.concat(fromPathVariable, fromValue).concat(toPathVariable, toValue))
-          .then(result => result.json())
-          .then(json => this.setState({users: json.users}))
-          .catch(error => console.error(error));
+    fetch(usersUrl.concat(fromPathVariable, fromValue).concat(toPathVariable,
+        toValue))
+        .then(result => result.json())
+        .then(json => this.setState({users: json.users}))
+        .catch(error => console.error(error));
   };
 
   componentDidCatch(error, message) {
@@ -75,31 +77,50 @@ export class UsersPage extends React.Component {
 
   render() {
 
-      let users = this.state.users !== undefined ? this.state.users.sort((a, b) => {
+    let users = this.state.users !== undefined ? this.state.users.sort(
+        (a, b) => {
           return a.registered > b.registered ? -1 : 0
-      }) : [];
+        }) : [];
 
-      const startDate = this.state.startDate;
-      const endDate = this.state.endDate;
+    const startDate = this.state.startDate;
+    const endDate = this.state.endDate;
 
-      return (
+    return (
         <ItemsContainer>
           {this.state.hasError ? this.state.error : null}
           <DatePickerContainer>
+
             <DatePickerWrapper>
-              From
-              <DatePicker dateFormat={dateFormat} selected={startDate}
-                  onChange={this.handleStartDateChange}
-              />
-            </DatePickerWrapper>
-            <DatePickerWrapper>
-              To
-              <DatePicker dateFormat={dateFormat} selected={endDate}
-                  onChange={this.handleEndDateChange}
-              />
+              <div className="form-group">
+                <div className="input-group input-group-default">
+                  <div className="input-group-prepend">
+                  <span className="input-group-text"
+                        id="basic-addon1">FROM</span>
+                  </div>
+                  <DatePicker dateFormat={dateFormat} selected={startDate}
+                              onChange={this.handleStartDateChange}
+                  />
+                </div>
+              </div>
             </DatePickerWrapper>
 
-            <LoadingButton from={startDate} to={endDate} url={usersReportUrl}/>
+            <DatePickerWrapper>
+              <div className="form-group">
+                <div className="input-group input-group-default">
+                  <div className="input-group-prepend">
+                  <span className="input-group-text"
+                        id="basic-addon1">TO</span>
+                  </div>
+                  <DatePicker dateFormat={dateFormat} selected={endDate}
+                              onChange={this.handleEndDateChange}/>
+                </div>
+              </div>
+            </DatePickerWrapper>
+
+            <DatePickerWrapper>
+              <LoadingButton from={startDate} to={endDate}
+                             url={usersReportUrl}/>
+            </DatePickerWrapper>
 
           </DatePickerContainer>
 
