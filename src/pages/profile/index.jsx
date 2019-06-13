@@ -3,15 +3,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import 'react-table/react-table.css'
 import '../common/index.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import {
-  Button,
-  DatePickerContainer,
-  Label,
-  ProfileContainer,
-  ProfilePage
-} from "./styles";
-import DatePicker from "react-datepicker";
-import {SelectContainer, SelectWrapper} from "../booking-page/styles";
+import {FormWrapper, Label, ProfileContainer, ProfilePage} from "./styles";
 
 export class UserPage extends React.Component {
   constructor(props) {
@@ -32,45 +24,53 @@ export class UserPage extends React.Component {
   }
 
   componentDidMount() {
-    const { profileUrl } = this.props.location.state;
+    const {profileUrl} = this.props.location.state;
 
     fetch(profileUrl)
-      .then((response) => {
-        if (response.status === 200) {
-          return response.json().then((json) => {
-            this.setState({
-              firstName: json.firstName,
-              lastName: json.lastName,
-              email: json.email,
-              phone: json.phone,
-              country: json.country,
-              city: json.city,
-              currency: json.currency,
-              registered: json.registered,
-              hasError: false,
-              error: ''
+        .then((response) => {
+          if (response.status === 200) {
+            return response.json().then((json) => {
+              this.setState({
+                firstName: json.firstName,
+                lastName: json.lastName,
+                email: json.email,
+                phone: json.phone,
+                country: json.country,
+                city: json.city,
+                currency: json.currency,
+                registered: json.registered,
+                hasError: false,
+                hasChanges: false,
+                isSaved: false,
+                error: ''
+              });
             });
-          });
-        } else {
-          this.setState({
-            hasError: true,
-            error: response.json.message
-          })
-        }
-      })
-      .catch(error => console.error(error))
+          } else {
+            this.setState({
+              hasError: true,
+              isSaved: false,
+              error: response.json.message
+            })
+          }
+        })
+        .catch(error => console.error(error))
   }
 
   componentDidCatch(error, message) {
     this.setState({
       hasError: true,
+      isSaved: false,
+      hasChanges: false,
       error: message
     });
     console.error(error, message);
   }
 
   handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value })
+    this.setState({
+      [e.target.name]: e.target.value,
+      hasChanges: true
+    })
   };
 
   handleSubmit = (e) => {
@@ -88,11 +88,11 @@ export class UserPage extends React.Component {
       role: this.state.role
     };
 
-    this.loadUserOnServer(JSON.stringify(user), 'PUT');
+    this.saveUser(JSON.stringify(user), 'PUT');
   };
 
-  loadUserOnServer = (user, method) => {
-    const { profileUrl } = this.props.location.state;
+  saveUser = (user, method) => {
+    const {profileUrl} = this.props.location.state;
     fetch(profileUrl, {
       method: method,
       headers: {
@@ -100,110 +100,196 @@ export class UserPage extends React.Component {
       },
       body: user
     })
-      .then((response) => {
-        if (response.status !== 204) {
-          return response.json().then((json) => {
-            this.setState({
-              hasError: true,
-              error: json.message
+        .then((response) => {
+          if (response.status !== 204) {
+            return response.json().then((json) => {
+              this.setState({
+                hasError: true,
+                isSaved: false,
+                error: json.message
+              });
             });
-          });
-        } else {
-          this.setState({
-            hasError: false,
-            error: ''
-          });
-        }
-      })
-      .catch(error => {
-        console.error(error);
-      });
+          } else {
+            this.setState({
+              hasError: false,
+              hasChanges: false,
+              isSaved: true,
+              error: ''
+            });
+          }
+        })
+        .catch(error => {
+          console.error(error);
+        });
   };
 
   render() {
+    const buttonClassValue = this.state.hasChanges
+        ? 'btn btn-success btn-lg'
+        : 'btn btn-danger btn-lg';
     return (
         <ProfilePage>
           <ProfileContainer>
             <Label>Profile</Label>
-            <form onSubmit={this.handleSubmit}>
-              {this.state.hasError ? this.state.error : null}
-              <label>
-                Lastname:
-                <input
-                    type="text"
-                    name="lastName"
-                    value={this.state.lastName}
-                    onChange={this.handleChange}/>
-              </label>
-              <br/>
-              <label>
-                Firstname:
-                <input
-                    type="text"
-                    name="firstName"
-                    value={this.state.firstName}
-                    onChange={this.handleChange}/>
-              </label>
-              <br/>
-              <label>
-                Email:
-                <input
-                    type="email"
-                    name="email"
-                    value={this.state.email}
-                    onChange={this.handleChange}/>
-              </label>
-              <br/>
-              <label>
-                Phone:
-                <input
-                    type="tel"
-                    name="phone"
-                    value={this.state.phone}
-                    onChange={this.handleChange}/>
-              </label>
-              <br/>
-              <label>
-                Country:
-                <input
-                    type="text"
-                    name="country"
-                    value={this.state.country}
-                    onChange={this.handleChange}/>
-              </label>
-              <br/>
-              <label>
-                City:
-                <input
-                    type="text"
-                    name="city"
-                    value={this.state.city}
-                    onChange={this.handleChange}/>
-              </label>
-              <SelectContainer>
-                <div>Currency</div>
-                <SelectWrapper>
-                  <select name="currency"
-                          value={this.state.currency}
-                          onChange={this.handleChange}>
-                    <option value="BYN">BYN</option>
-                    <option value="RUB">RUB</option>
-                    <option value="USD">USD</option>
-                    <option value="EUR">EUR</option>
-                  </select>
-                </SelectWrapper>
-              </SelectContainer>
-              <DatePickerContainer>
-                Registered
-                <DatePicker
-                    type="text"
-                    name="registered"
-                    value={this.state.registered}
-                    disabled
-                />
-              </DatePickerContainer>
-              <Button children={"SAVE"}/>
-            </form>
+
+            <FormWrapper>
+              <form onSubmit={this.handleSubmit}>
+                {this.state.hasError &&
+                  <div className="form-group text-danger">
+                    <label>{this.state.error}</label>
+                  </div>
+                }
+
+                {this.state.isSaved &&
+                <div className="form-group text-success">
+                  <label>Information updated</label>
+                </div>
+                }
+
+                <div className="form-group">
+                  <div className="input-group input-group-lg">
+                    <div className="input-group-prepend">
+                  <span className="input-group-text"
+                        id="">Name</span>
+                    </div>
+                    <input type="text" name="lastName"
+                           className="form-control col-lg-1"
+                           placeholder="lastName"
+                           aria-label="lastName"
+                           value={this.state.lastName}
+                           onChange={this.handleChange}
+                           aria-describedby="basic-addon1"
+                           required="required"/>
+                    <input type="text"
+                           name="firstName"
+                           className="form-control col-lg-1"
+                           placeholder="firstName"
+                           aria-label="firstName"
+                           value={this.state.firstName}
+                           onChange={this.handleChange}
+                           aria-describedby="basic-addon1"
+                           required="required"/>
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <div className="input-group input-group-lg">
+                    <div className="input-group-prepend">
+                  <span className="input-group-text"
+                        id="basic-addon1">Email</span>
+                    </div>
+                    <input type="email"
+                           name="email"
+                           className="form-control col-lg-2"
+                           placeholder="email"
+                           aria-label="email"
+                           value={this.state.email}
+                           onChange={this.handleChange}
+                           aria-describedby="basic-addon1"
+                           required="required"/>
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <div className="input-group input-group-lg">
+                    <div className="input-group-prepend">
+                  <span className="input-group-text"
+                        id="basic-addon1">Phone
+                  </span>
+                    </div>
+                    <input type="tel"
+                           name="phone"
+                           className="form-control col-lg-2"
+                           placeholder="phone"
+                           aria-label="phone"
+                           value={this.state.phone}
+                           onChange={this.handleChange}
+                           aria-describedby="basic-addon1"
+                           required="required"/>
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <div className="input-group input-group-lg">
+                    <div className="input-group-prepend">
+                  <span className="input-group-text"
+                        id="basic-addon1">Country</span>
+                    </div>
+                    <input type="text"
+                           name="country"
+                           className="form-control col-lg-1"
+                           placeholder="country"
+                           aria-label="country"
+                           value={this.state.country}
+                           onChange={this.handleChange}
+                           aria-describedby="basic-addon1"
+                           required="required"/>
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <div className="input-group input-group-lg">
+                    <div className="input-group-prepend">
+                  <span className="input-group-text"
+                        id="basic-addon1">City
+                  </span>
+                    </div>
+                    <input type="text"
+                           name="city"
+                           className="form-control col-lg-1"
+                           placeholder="city"
+                           aria-label="city"
+                           value={this.state.city}
+                           onChange={this.handleChange}
+                           aria-describedby="basic-addon1"
+                           required="required"/>
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <div className="form-group">
+                    <div className="input-group input-group-lg">
+                      <div className="input-group-prepend">
+                      <span className="input-group-text"
+                            id="basic-addon1">Currency
+                      </span>
+                      </div>
+                      <select className="form-control form-control-lg col-lg-1"
+                              value={this.state.currency}
+                              onChange={this.handleChange}>
+                        <option value="BYN">BYN</option>
+                        <option value="RUB">RUB</option>
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div className="form-group">
+                  <div className="input-group input-group-lg">
+                    <div className="input-group-prepend">
+                  <span className="input-group-text"
+                        id="basic-addon1">Registered
+                  </span>
+                    </div>
+                    <input type="text"
+                           name="registered"
+                           className="form-control col-lg-2"
+                           placeholder="registered"
+                           aria-label="registered"
+                           value={this.state.registered}
+                           disabled
+                           aria-describedby="basic-addon1"/>
+                  </div>
+                </div>
+
+                <button className={buttonClassValue} disabled={!this.state.hasChanges}
+                        type="submit">Save
+                </button>
+              </form>
+            </FormWrapper>
           </ProfileContainer>
         </ProfilePage>
     )
