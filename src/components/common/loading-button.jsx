@@ -39,7 +39,7 @@ export class LoadingButton extends React.Component {
 
         if (response.status === 200) {
           response.blob().then((blob) => {
-            saveAs(blob, 'orders-report');
+            saveAs(blob, 'report');
             this.setState({
               hasError: false,
               error: ''
