@@ -1,15 +1,20 @@
 import React from 'react';
-
-import {FooterWrapper} from './styles';
+import {SocialIcon} from 'react-social-icons';
+import {SocialIconContainer, SocialIconWrapper} from "./styles";
 
 export class Footer extends React.Component {
-    render() {
-        return (
-            <FooterWrapper>
-                <a href="https://vk.com/belyptah" target="_blank">
-                    <img src="http://pngimg.com/uploads/vkontakte/vkontakte_PNG19.png" width="5%" height="auto" alt="Null"/>
-                </a>
-            </FooterWrapper>
-        );
-    }
+  render() {
+    return (
+        <footer className="page-footer font-small special-color-dark pt-4">
+          <SocialIconContainer>
+            <SocialIconWrapper>
+              <SocialIcon url="http://vk.com/belyptah"/>
+            </SocialIconWrapper>
+            <SocialIconWrapper>
+              <SocialIcon url="http://www.instagram.com/usadba_bely.ptah/"/>
+            </SocialIconWrapper>
+          </SocialIconContainer>
+        </footer>
+    );
+  }
 }
