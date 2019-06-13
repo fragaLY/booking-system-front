@@ -1,6 +1,7 @@
 import React from 'react';
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
+import 'bootstrap/dist/css/bootstrap.css';
 
 import {brickImages} from './brickImages';
 import {woodenImages} from './woodenImages';

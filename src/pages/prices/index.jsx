@@ -3,6 +3,8 @@ import ReactTable from 'react-table';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-table/react-table.css'
 import '../common/index.css';
+import 'bootstrap/dist/css/bootstrap.css';
+
 import {columns} from './columns';
 
 import {ItemsContainer} from '../common/styles';

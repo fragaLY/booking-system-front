@@ -6,6 +6,7 @@ import 'react-table/react-table.css'
 import '../common/index.css';
 import {columns} from './columns';
 import LoadingButton from '../../components/common/loading-button.jsx'
+import 'bootstrap/dist/css/bootstrap.css';
 
 import {
   DatePickerContainer,

@@ -2,6 +2,16 @@ import React from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-table/react-table.css'
 import '../common/index.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import {
+  Button,
+  DatePickerContainer,
+  Label,
+  ProfileContainer,
+  ProfilePage
+} from "./styles";
+import DatePicker from "react-datepicker";
+import {SelectContainer, SelectWrapper} from "../booking-page/styles";
 
 export class UserPage extends React.Component {
   constructor(props) {
@@ -112,89 +122,90 @@ export class UserPage extends React.Component {
 
   render() {
     return (
-      <div className="user">
-        <form onSubmit={this.handleSubmit}>
-          {this.state.hasError ? this.state.error : null}
-          <label>
-            Lastname:
-              <input
-              type="text"
-              name="lastName"
-              value={this.state.lastName}
-              onChange={this.handleChange} />
-          </label>
-          <br />
-          <label>
-            Firstname:
-              <input
-              type="text"
-              name="firstName"
-              value={this.state.firstName}
-              onChange={this.handleChange} />
-          </label>
-          <br />
-          <label>
-            Email:
-              <input
-              type="email"
-              name="email"
-              value={this.state.email}
-              onChange={this.handleChange} />
-          </label>
-          <br />
-          <label>
-            Phone:
-              <input
-              type="tel"
-              name="phone"
-              value={this.state.phone}
-              onChange={this.handleChange} />
-          </label>
-          <br />
-          <label>
-            Country:
-              <input
-              type="text"
-              name="country"
-              value={this.state.country}
-              onChange={this.handleChange} />
-          </label>
-          <br />
-          <label>
-            City:
-              <input
-              type="text"
-              name="city"
-              value={this.state.city}
-              onChange={this.handleChange} />
-          </label>
-          <br />
-          <label>
-            Currency:
-              <select name="currency"
-              value={this.state.currency}
-              onChange={this.handleChange}>
-              <option value="BYN">BYN</option>
-              <option value="RUB">RUB</option>
-              <option value="USD">USD</option>
-              <option value="EUR">EUR</option>
-            </select>
-          </label>
-          <br />
-          <label>
-            Registered:
-              <input
-              type="text"
-              name="registered"
-              value={this.state.registered}
-              disabled
-            />
-          </label>
-          <br/>
-          <br/>
-          <input type="submit" value="Save" />
-        </form>
-      </div>
+        <ProfilePage>
+          <ProfileContainer>
+            <Label>Profile</Label>
+            <form onSubmit={this.handleSubmit}>
+              {this.state.hasError ? this.state.error : null}
+              <label>
+                Lastname:
+                <input
+                    type="text"
+                    name="lastName"
+                    value={this.state.lastName}
+                    onChange={this.handleChange}/>
+              </label>
+              <br/>
+              <label>
+                Firstname:
+                <input
+                    type="text"
+                    name="firstName"
+                    value={this.state.firstName}
+                    onChange={this.handleChange}/>
+              </label>
+              <br/>
+              <label>
+                Email:
+                <input
+                    type="email"
+                    name="email"
+                    value={this.state.email}
+                    onChange={this.handleChange}/>
+              </label>
+              <br/>
+              <label>
+                Phone:
+                <input
+                    type="tel"
+                    name="phone"
+                    value={this.state.phone}
+                    onChange={this.handleChange}/>
+              </label>
+              <br/>
+              <label>
+                Country:
+                <input
+                    type="text"
+                    name="country"
+                    value={this.state.country}
+                    onChange={this.handleChange}/>
+              </label>
+              <br/>
+              <label>
+                City:
+                <input
+                    type="text"
+                    name="city"
+                    value={this.state.city}
+                    onChange={this.handleChange}/>
+              </label>
+              <SelectContainer>
+                <div>Currency</div>
+                <SelectWrapper>
+                  <select name="currency"
+                          value={this.state.currency}
+                          onChange={this.handleChange}>
+                    <option value="BYN">BYN</option>
+                    <option value="RUB">RUB</option>
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                  </select>
+                </SelectWrapper>
+              </SelectContainer>
+              <DatePickerContainer>
+                Registered
+                <DatePicker
+                    type="text"
+                    name="registered"
+                    value={this.state.registered}
+                    disabled
+                />
+              </DatePickerContainer>
+              <Button children={"SAVE"}/>
+            </form>
+          </ProfileContainer>
+        </ProfilePage>
     )
   }
 }

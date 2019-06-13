@@ -1,6 +1,7 @@
 import React from 'react';
 import DatePicker from 'react-datepicker';
 import Select from 'react-select';
+import 'bootstrap/dist/css/bootstrap.css';
 
 import {
   BookingPage,
