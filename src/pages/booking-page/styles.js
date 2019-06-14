@@ -39,7 +39,7 @@ export const Select = styled.select`
 `;
 
 export const SelectWrapper = styled.div`
-  width: 30rem;
+  width: 15rem;
 `;
 
 export const SelectContainer = styled.div`

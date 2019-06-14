@@ -287,7 +287,7 @@ export class UserPage extends React.Component {
                 </div>
 
                 <button className={buttonClassValue} disabled={!this.state.hasChanges}
-                        type="submit">Save
+                        type="submit">SAVE
                 </button>
               </form>
             </FormWrapper>

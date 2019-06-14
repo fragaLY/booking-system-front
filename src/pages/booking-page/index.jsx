@@ -6,15 +6,13 @@ import 'bootstrap/dist/css/bootstrap.css';
 import {
   BookContainer,
   BookingPage,
-  Button,
-  DatePickerContainer,
+  FormWrapper,
   Label,
-  SelectContainer,
   SelectWrapper
 } from './styles';
-import {DatePickerWrapper} from '../common/styles';
 import {guestOptions, housesOptions} from './options';
-import {FormWrapper} from "../profile/styles";
+
+const housesUrl = 'http://35.204.250.139:8080/api/homes';
 
 export class Booking extends React.Component {
 
@@ -23,66 +21,151 @@ export class Booking extends React.Component {
     endDate: new Date(),
     isClearable: true,
     prices: [],
+    homes: {},
+    guests: 4,
+    cost: 'Please select house(s) and amount of guests...'
+  };
 
+  componentDidMount() {
+    fetch(housesUrl)
+        .then((response) => {
+          if (response.status === 200) {
+            return response.json().then(result => result.json()).then((json) => {
+              this.setState({
+                houses: json.homes,
+                hasError: false,
+                hasChanges: false,
+                isSaved: false,
+                error: ''
+              });
+            });
+          } else {
+            this.setState({
+              hasError: true,
+              isSaved: false,
+              error: response.json.message
+            })
+          }
+        })
+        .catch(error => console.error(error))
   }
 
-  handleStartDateChange(date) {
-    this.setState({startDate: date})
-  }
+  handleStartDateChange = (from) => {
+    this.setState({startDate: from});
+  };
 
-  handleEndDateChange(date) {
-    this.setState({endDate: date})
-  }
+  handleEndDateChange = (to) => {
+    this.setState({endDate: to});
+  };
+
+  handleGuestsChange = (_guests) => {
+    this.setState({guests: _guests});
+  };
 
   toggleClearable = () => {
     this.setState(state => ({isClearable: !state.isClearable}));
-  }
+  };
 
   render() {
+
+    const buttonClassValue = this.state.hasChanges
+        ? 'btn btn-success btn-lg'
+        : 'btn btn-danger btn-lg';
+
     return (
         <BookingPage>
           <BookContainer>
             <Label>Booking</Label>
             <FormWrapper>
-              <DatePickerContainer>
-                <DatePickerWrapper>
+              <form onSubmit={this.handleSubmit}>
+                {this.state.hasError &&
+                <div className="form-group text-danger">
+                  <label>{this.state.error}</label>
+                </div>
+                }
 
-                  From
-                  <DatePicker
-                      dateFormat='yyyy-MM-dd'
-                      selected={this.state.startDate}
-                      onChange={this.handleStartDateChange}
-                  />
-                </DatePickerWrapper>
-                <DatePickerWrapper>
-                  To
-                  <DatePicker
-                      dateFormat='yyyy-MM-dd'
-                      selected={this.state.endDate}
-                      onChange={this.handleEndDateChange}
-                  />
-                </DatePickerWrapper>
-              </DatePickerContainer>
+                {this.state.isSaved &&
+                <div className="form-group text-success">
+                  <label>Request created. Wait for a feedback.</label>
+                </div>
+                }
 
-              <SelectContainer>
-                <div>Guest(s)</div>
-                <SelectWrapper>
-                  <Select
-                      options={guestOptions}
-                      isClearable={this.state.isClearable}
-                  />
-                </SelectWrapper>
-              </SelectContainer>
-              <SelectContainer>
-                <div>House(s)</div>
-                <SelectWrapper>
-                  <Select
-                      options={housesOptions}
-                      isClearable={this.state.isClearable}
-                  />
-                </SelectWrapper>
-              </SelectContainer>
-              <Button children={'Book'}/>
+                <div className="form-group">
+                  <div className="input-group mb-3">
+                    <div className="input-group-prepend">
+                  <span className="input-group-text"
+                        id="">ORDER DATES
+                  </span>
+                    </div>
+                    <DatePicker
+                        dateFormat='yyyy-MM-dd'
+                        selected={this.state.startDate}
+                        onChange={this.handleStartDateChange}
+                    />
+                    <DatePicker
+                        dateFormat='yyyy-MM-dd'
+                        selected={this.state.endDate}
+                        onChange={this.handleEndDateChange}
+                    />
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <div className="input-group mb-3">
+                    <div className="input-group-prepend">
+                  <span className="input-group-text"
+                        id="basic-addon1">GUESTS</span>
+                    </div>
+                    <SelectWrapper>
+                      <Select
+                          options={guestOptions}
+                          isClearable={this.state.isClearable}
+                          value={this.state.guests}
+                          onChange={this.handleGuestsChange}
+                      />
+                    </SelectWrapper>
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <div className="input-group mb-3">
+                    <div className="input-group-prepend">
+                  <span className="input-group-text"
+                        id="basic-addon1">HOUSES</span>
+                    </div>
+                    <SelectWrapper>
+                      <Select
+                          options={this.state.homes}
+                          isClearable={this.state.isClearable}
+                      />
+                    </SelectWrapper>
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <div className="input-group input-group-lg">
+                    <div className="input-group-prepend">
+                  <span className="input-group-text"
+                        id="basic-addon1">Cost
+                  </span>
+                    </div>
+                    <input type="text"
+                           name="registered"
+                           className="form-control col-lg-3"
+                           placeholder="registered"
+                           aria-label="registered"
+                           value={this.state.cost}
+                           disabled
+                           aria-describedby="basic-addon1"/>
+                  </div>
+                </div>
+
+
+                <button className={buttonClassValue}
+                        disabled={!this.state.hasChanges}
+                        type="submit">ORDER
+                </button>
+              </form>
             </FormWrapper>
           </BookContainer>
         </BookingPage>
