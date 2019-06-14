@@ -10,7 +10,7 @@ import {
   Label,
   SelectWrapper
 } from './styles';
-import {guestOptions, housesOptions} from './options';
+import {guestOptions} from './options';
 
 const housesUrl = 'http://35.204.250.139:8080/api/homes';
 
@@ -30,15 +30,16 @@ export class Booking extends React.Component {
     fetch(housesUrl)
         .then((response) => {
           if (response.status === 200) {
-            return response.json().then(result => result.json()).then((json) => {
-              this.setState({
-                houses: json.homes,
-                hasError: false,
-                hasChanges: false,
-                isSaved: false,
-                error: ''
-              });
-            });
+            return response.json().then(result => result.json()).then(
+                (json) => {
+                  this.setState({
+                    houses: json.homes,
+                    hasError: false,
+                    hasChanges: false,
+                    isSaved: false,
+                    error: ''
+                  });
+                });
           } else {
             this.setState({
               hasError: true,
@@ -51,15 +52,25 @@ export class Booking extends React.Component {
   }
 
   handleStartDateChange = (from) => {
-    this.setState({startDate: from});
+    this.setState({
+      startDate: from,
+      hasChanges: true
+    });
   };
 
   handleEndDateChange = (to) => {
-    this.setState({endDate: to});
+    this.setState({
+      endDate: to,
+      hasChanges: true
+    });
+
   };
 
   handleGuestsChange = (_guests) => {
-    this.setState({guests: _guests});
+    this.setState({
+      guests: _guests,
+      hasChanges: true
+    });
   };
 
   toggleClearable = () => {
