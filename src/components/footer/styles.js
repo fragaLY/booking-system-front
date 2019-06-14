@@ -8,3 +8,7 @@ export const SocialIconContainer = styled.div`
   display: flex;
   flex-flow: row nowrap;
 `;
+
+export const FooterWrapper = styled.div`
+    position: relative;
+`

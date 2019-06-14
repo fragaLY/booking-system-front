@@ -5,20 +5,29 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import {brickImages} from './brickImages';
 import {woodenImages} from './woodenImages';
+import {
+    BrickGalleryWrapper,
+    GalleryWrapper,
+    WoodenGalleryWrapper
+} from "./styles";
 
 export class HousesPage extends React.Component {
     render() {
         return (
-            <React.Fragment>
-            <ImageGallery showBullets={true}
-                          name='brick-house'
-                          items={brickImages}
-            />
-            <ImageGallery showBullets={true}
-                          name='wooden-house'
-                          items={woodenImages}
-            />
-            </React.Fragment>
+            <GalleryWrapper>
+                <BrickGalleryWrapper>
+                    <ImageGallery showBullets={true}
+                                  name='brick-house'
+                                  items={brickImages}
+                    />
+                </BrickGalleryWrapper>
+                <WoodenGalleryWrapper>
+                    <ImageGallery showBullets={true}
+                                  name='wooden-house'
+                                  items={woodenImages}
+                    />
+                </WoodenGalleryWrapper>
+            </GalleryWrapper>
         )
     }
 }
