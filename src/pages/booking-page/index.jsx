@@ -4,16 +4,17 @@ import Select from 'react-select';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import {
-  BookingPage,
   BookContainer,
+  BookingPage,
+  Button,
   DatePickerContainer,
   Label,
-  SelectWrapper,
   SelectContainer,
-  Button
+  SelectWrapper
 } from './styles';
 import {DatePickerWrapper} from '../common/styles';
 import {guestOptions, housesOptions} from './options';
+import {FormWrapper} from "../profile/styles";
 
 export class Booking extends React.Component {
 
@@ -39,50 +40,52 @@ export class Booking extends React.Component {
 
   render() {
     return (
-      <BookingPage>
-        <BookContainer>
-          <Label>Booking</Label>
-          <DatePickerContainer>
-            <DatePickerWrapper>
-              From
-              <DatePicker
-                dateFormat='yyyy-MM-dd'
-                selected={this.state.startDate}
-                onChange={this.handleStartDateChange}
-              />
-            </DatePickerWrapper>
-            <DatePickerWrapper>
-              To
-              <DatePicker
-                dateFormat='yyyy-MM-dd'
-                selected={this.state.endDate}
-                onChange={this.handleEndDateChange}
-              />
-            </DatePickerWrapper>
-          </DatePickerContainer>
+        <BookingPage>
+          <BookContainer>
+            <Label>Booking</Label>
+            <FormWrapper>
+              <DatePickerContainer>
+                <DatePickerWrapper>
 
-          <SelectContainer>
-            <div>Guest(s)</div>
-            <SelectWrapper>
-              <Select
-                options={guestOptions}
-                isClearable={this.state.isClearable}
-              />
-            </SelectWrapper>
-          </SelectContainer>
-          <SelectContainer>
-            <div>House(s)</div>
-            <SelectWrapper>
-              <Select
-              options={housesOptions}
-              isClearable={this.state.isClearable}
-              />
-            </SelectWrapper>
-          </SelectContainer>
-          <Button children={'Book'}/>
+                  From
+                  <DatePicker
+                      dateFormat='yyyy-MM-dd'
+                      selected={this.state.startDate}
+                      onChange={this.handleStartDateChange}
+                  />
+                </DatePickerWrapper>
+                <DatePickerWrapper>
+                  To
+                  <DatePicker
+                      dateFormat='yyyy-MM-dd'
+                      selected={this.state.endDate}
+                      onChange={this.handleEndDateChange}
+                  />
+                </DatePickerWrapper>
+              </DatePickerContainer>
 
-        </BookContainer>
-      </BookingPage>
+              <SelectContainer>
+                <div>Guest(s)</div>
+                <SelectWrapper>
+                  <Select
+                      options={guestOptions}
+                      isClearable={this.state.isClearable}
+                  />
+                </SelectWrapper>
+              </SelectContainer>
+              <SelectContainer>
+                <div>House(s)</div>
+                <SelectWrapper>
+                  <Select
+                      options={housesOptions}
+                      isClearable={this.state.isClearable}
+                  />
+                </SelectWrapper>
+              </SelectContainer>
+              <Button children={'Book'}/>
+            </FormWrapper>
+          </BookContainer>
+        </BookingPage>
     )
   }
 }

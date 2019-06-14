@@ -28,7 +28,7 @@ export class LoadingButton extends React.Component {
     this.setState({isLoading: true}, () => {
 
       const headers = new Headers({
-          'Content-Type' : docxContentType
+        'Content-Type': docxContentType
       });
 
       const fromValue = from ? new Date(from).toISOString().slice(0, 10) : '';
@@ -80,7 +80,11 @@ export class LoadingButton extends React.Component {
               onClick={!isLoading ? this.handleClick : null}>
             {isLoading ? 'Loading…' : 'Download report'}
           </Button>
-          {this.state.hasError ? this.state.error : null}
+          {this.state.hasError &&
+          <div className="form-group text-danger">
+            <label>{this.state.error}</label>
+          </div>
+          }
         </div>
     );
   }

@@ -55,3 +55,8 @@ export const Button = styled.button`
   padding: 1rem 4rem;
   margin: 1rem;
 `;
+
+export const FormWrapper = styled.div`
+margin: 2rem 2rem auto;
+margin-bottom: 2rem;
+`;

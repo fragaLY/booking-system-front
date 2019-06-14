@@ -8,10 +8,6 @@ export const routes = [
     to: '/houses'
   },
   {
-    text: 'Prices',
-    to: '/prices'
-  },
-  {
     text: 'Users',
     to: '/users'
   },
