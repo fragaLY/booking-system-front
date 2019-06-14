@@ -154,7 +154,7 @@ export class UserPage extends React.Component {
                     </div>
                     <input type="text" name="lastName"
                            className="form-control col-lg-2"
-                           placeholder="lastName"
+                           placeholder="Lastname"
                            aria-label="lastName"
                            value={this.state.lastName}
                            onChange={this.handleChange}
@@ -163,7 +163,7 @@ export class UserPage extends React.Component {
                     <input type="text"
                            name="firstName"
                            className="form-control col-lg-2"
-                           placeholder="firstName"
+                           placeholder="Firstname"
                            aria-label="firstName"
                            value={this.state.firstName}
                            onChange={this.handleChange}
@@ -181,7 +181,7 @@ export class UserPage extends React.Component {
                     <input type="email"
                            name="email"
                            className="form-control col-lg-2"
-                           placeholder="email"
+                           placeholder="email@email.com"
                            aria-label="email"
                            value={this.state.email}
                            onChange={this.handleChange}
@@ -200,7 +200,7 @@ export class UserPage extends React.Component {
                     <input type="tel"
                            name="phone"
                            className="form-control col-lg-2"
-                           placeholder="phone"
+                           placeholder="Phone number"
                            aria-label="phone"
                            value={this.state.phone}
                            onChange={this.handleChange}
@@ -218,7 +218,7 @@ export class UserPage extends React.Component {
                     <input type="text"
                            name="country"
                            className="form-control col-lg-1"
-                           placeholder="country"
+                           placeholder="Country"
                            aria-label="country"
                            value={this.state.country}
                            onChange={this.handleChange}
@@ -237,7 +237,7 @@ export class UserPage extends React.Component {
                     <input type="text"
                            name="city"
                            className="form-control col-lg-1"
-                           placeholder="city"
+                           placeholder="City"
                            aria-label="city"
                            value={this.state.city}
                            onChange={this.handleChange}
@@ -255,6 +255,7 @@ export class UserPage extends React.Component {
                       </span>
                       </div>
                       <select className="form-control form-control-lg col-lg-1"
+                              name="currency"
                               value={this.state.currency}
                               onChange={this.handleChange}>
                         <option value="BYN">BYN</option>
