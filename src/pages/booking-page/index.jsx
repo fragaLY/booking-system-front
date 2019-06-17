@@ -135,6 +135,8 @@ export class Booking extends React.Component {
 
   render() {
 
+    let now = new Date();
+
     const buttonClassValue = this.state.hasChanges
         ? 'btn btn-success btn-lg'
         : 'btn btn-danger btn-lg';
@@ -166,7 +168,7 @@ export class Booking extends React.Component {
                     </div>
                     <DatePicker
                         todayButton={"Today"}
-                        minDate={new Date()}
+                        minDate={now}
                         dateFormat='yyyy-MM-dd'
                         selected={this.state.startDate}
                         onChange={this.handleStartDateChange}
@@ -174,8 +176,8 @@ export class Booking extends React.Component {
                         placeholderText='From'
                     />
                     <DatePicker
-                        todayButton={"Today"}
-                        minDate={new Date()}
+                        minDate={new Date(now.getFullYear(), now.getMonth(),
+                            now.getDate() + 1)}
                         dateFormat='yyyy-MM-dd'
                         selected={this.state.endDate}
                         onChange={this.handleEndDateChange}
