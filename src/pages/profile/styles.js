@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 export const ProfilePage = styled.div`
-  font-size: 1.6rem;
+  font-size: 3rem;
 `;
 
 export const ProfileContainer = styled.div`
-  width: 100rem;
+  width: 75rem;
   margin: 0 auto;
   border: 1px solid black;
   border-radius: 4px;

@@ -180,7 +180,7 @@ export class UserPage extends React.Component {
                     </div>
                     <input type="email"
                            name="email"
-                           className="form-control col-lg-2"
+                           className="form-control col-lg-3"
                            placeholder="email@email.com"
                            aria-label="email"
                            value={this.state.email}
@@ -199,7 +199,7 @@ export class UserPage extends React.Component {
                     </div>
                     <input type="tel"
                            name="phone"
-                           className="form-control col-lg-2"
+                           className="form-control col-lg-3"
                            placeholder="Phone number"
                            aria-label="phone"
                            value={this.state.phone}
