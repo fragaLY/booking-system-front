@@ -4,6 +4,7 @@ import 'react-table/react-table.css'
 import '../common/index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import {FormWrapper, Label, ProfileContainer, ProfilePage} from "./styles";
+import {CountryDropdown} from "react-country-region-selector";
 
 export class UserPage extends React.Component {
   constructor(props) {
@@ -123,6 +124,13 @@ export class UserPage extends React.Component {
         });
   };
 
+  selectCountry(country) {
+    this.setState({
+      country: country,
+      hasChanges: true
+    });
+  }
+
   render() {
     const buttonClassValue = this.state.hasChanges
         ? 'btn btn-success btn-lg'
@@ -135,9 +143,9 @@ export class UserPage extends React.Component {
             <FormWrapper>
               <form onSubmit={this.handleSubmit}>
                 {this.state.hasError &&
-                  <div className="form-group text-danger">
-                    <label>{this.state.error}</label>
-                  </div>
+                <div className="form-group text-danger">
+                  <label>{this.state.error}</label>
+                </div>
                 }
 
                 {this.state.isSaved &&
@@ -209,21 +217,16 @@ export class UserPage extends React.Component {
                   </div>
                 </div>
 
+
                 <div className="form-group">
                   <div className="input-group input-group-lg">
                     <div className="input-group-prepend">
                   <span className="input-group-text"
                         id="basic-addon1">Country</span>
                     </div>
-                    <input type="text"
-                           name="country"
-                           className="form-control col-lg-1"
-                           placeholder="Country"
-                           aria-label="country"
-                           value={this.state.country}
-                           onChange={this.handleChange}
-                           aria-describedby="basic-addon1"
-                           required="required"/>
+                    <CountryDropdown className = "form-control col-lg-3"
+                        value={this.state.country}
+                        onChange={(country) => this.selectCountry(country)}/>
                   </div>
                 </div>
 
@@ -286,7 +289,8 @@ export class UserPage extends React.Component {
                   </div>
                 </div>
 
-                <button className={buttonClassValue} disabled={!this.state.hasChanges}
+                <button className={buttonClassValue}
+                        disabled={!this.state.hasChanges}
                         type="submit">SAVE
                 </button>
               </form>

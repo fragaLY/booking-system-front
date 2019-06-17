@@ -5,7 +5,7 @@ export const ProfilePage = styled.div`
 `;
 
 export const ProfileContainer = styled.div`
-  width: 75rem;
+  width: 85rem;
   margin: 0 auto;
   border: 1px solid black;
   border-radius: 4px;
