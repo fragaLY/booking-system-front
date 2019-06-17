@@ -17,7 +17,7 @@ export const Label = styled.div`
 `;
 
 export const SelectWrapper = styled.div`
-  width: 15rem;
+  width: 25rem;
 `;
 
 export const FormWrapper = styled.div`

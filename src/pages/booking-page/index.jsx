@@ -10,72 +10,128 @@ import {
   Label,
   SelectWrapper
 } from './styles';
-import {guestOptions} from './options';
+import {guestOptions, housesOptions} from './options';
 
-const housesUrl = 'http://35.204.250.139:8080/api/homes';
+const costUrl = 'http://35.204.250.139:8080/api/cost';
+const defaultCostMessage = 'Please select house(s) and amount of guests';
+
+function getCost(orderSettings) {
+
+  let _cost = "Please select house(s) and amount of guests";
+
+  fetch(costUrl, {
+    method: 'GET',
+    headers: {"Content-type": "application/json"},
+    body: JSON.stringify(orderSettings)
+  })
+      .then(result => result.json())
+      .then(json => _cost = json.cost)
+      .catch(error => console.error(error));
+
+  return _cost;
+}
 
 export class Booking extends React.Component {
 
   state = {
-    startDate: new Date(),
-    endDate: new Date(),
+    startDate: '',
+    endDate: '',
     isClearable: true,
     prices: [],
-    homes: {},
-    guests: 4,
-    cost: 'Please select house(s) and amount of guests...'
+    homes: [],
+    guests: '',
+    excludeDates: '',
+    cost: defaultCostMessage
   };
 
-  componentDidMount() {
-    fetch(housesUrl)
-        .then((response) => {
-          if (response.status === 200) {
-            return response.json().then(result => result.json()).then(
-                (json) => {
-                  this.setState({
-                    houses: json.homes,
-                    hasError: false,
-                    hasChanges: false,
-                    isSaved: false,
-                    error: ''
-                  });
-                });
-          } else {
-            this.setState({
-              hasError: true,
-              isSaved: false,
-              error: response.json.message
-            })
-          }
-        })
-        .catch(error => console.error(error))
-  }
+  abortController = new AbortController();
 
   handleStartDateChange = (from) => {
+
+    let validForm = from && this.state.endDate && this.state.guests
+        && this.state.homes && this.state.homes.length > 0;
+
+    let orderSettings = {
+      from: from,
+      to: this.state.endDate,
+      homes: this.state.homes,
+      guests: this.state.guests
+    };
+
+    let _cost = validForm ? getCost(orderSettings) : defaultCostMessage;
+
     this.setState({
       startDate: from,
-      hasChanges: true
+      hasChanges: validForm,
+      cost: _cost
     });
   };
 
   handleEndDateChange = (to) => {
+
+    let validForm = this.state.startDate && to && this.state.guests
+        && this.state.homes && this.state.homes.length > 0;
+
+    let orderSettings = {
+      from: this.state.startDate,
+      to: to,
+      homes: this.state.homes,
+      guests: this.state.guests
+    };
+
+    let _cost = validForm ? getCost(orderSettings) : defaultCostMessage;
+
     this.setState({
       endDate: to,
-      hasChanges: true
+      hasChanges: validForm,
+      cost: _cost
     });
-
   };
 
   handleGuestsChange = (_guests) => {
+
+    let validForm = this.state.startDate && this.state.endDate && _guests
+        && this.state.homes && this.state.homes.length > 0;
+
+    let orderSettings = {
+      from: this.state.startDate,
+      to: this.state.endDate,
+      homes: this.state.homes,
+      guests: _guests
+    };
+
+    let _cost = validForm ? getCost(orderSettings) : defaultCostMessage;
+
     this.setState({
       guests: _guests,
-      hasChanges: true
+      hasChanges: validForm,
+      cost: _cost
     });
   };
 
-  toggleClearable = () => {
-    this.setState(state => ({isClearable: !state.isClearable}));
+  handleHomesChange = (_homes) => {
+    let validForm = this.state.startDate && this.state.endDate
+        && this.state.guests && _homes && _homes.length > 0;
+
+    let orderSettings = {
+      from: this.state.startDate,
+      to: this.state.endDate,
+      homes: _homes,
+      guests: this.state.guests
+    };
+
+    let _cost = validForm ? getCost(orderSettings) : defaultCostMessage;
+
+    this.setState({
+      homes: _homes,
+      hasChanges: validForm,
+      cost: _cost
+    });
   };
+
+  componentWillUnmount() {
+    this.abortController.abort();
+  }
 
   render() {
 
@@ -109,14 +165,22 @@ export class Booking extends React.Component {
                   </span>
                     </div>
                     <DatePicker
+                        todayButton={"Today"}
+                        minDate={new Date()}
                         dateFormat='yyyy-MM-dd'
                         selected={this.state.startDate}
                         onChange={this.handleStartDateChange}
+                        excludeDates={this.state.excludeDates}
+                        placeholderText='From'
                     />
                     <DatePicker
+                        todayButton={"Today"}
+                        minDate={new Date()}
                         dateFormat='yyyy-MM-dd'
                         selected={this.state.endDate}
                         onChange={this.handleEndDateChange}
+                        excludeDates={this.state.excludeDates}
+                        placeholderText='To'
                     />
                   </div>
                 </div>
@@ -146,8 +210,11 @@ export class Booking extends React.Component {
                     </div>
                     <SelectWrapper>
                       <Select
-                          options={this.state.homes}
+                          options={housesOptions}
                           isClearable={this.state.isClearable}
+                          value={this.state.homes}
+                          onChange={this.handleHomesChange}
+                          isMulti
                       />
                     </SelectWrapper>
                   </div>

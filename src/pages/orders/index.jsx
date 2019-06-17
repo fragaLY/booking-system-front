@@ -24,23 +24,44 @@ export class OrdersPage extends React.Component {
 
   state = {
     orders: [],
+    bookedDates: [],
     startDate: '',
     endDate: ''
   };
 
   componentDidMount() {
+
     fetch(ordersURl)
         .then(result => result.json())
-        .then(json => this.setState({orders: json.orders}))
+        .then(json => {
+          this.setState({
+            orders: json.orders
+          });
+        })
         .catch(error => console.error(error));
+
+    let _bookedDates = [];
+
+    this.state.orders.forEach(order => {
+        let from = new Date(order.from);
+        let to = new Date(order.to);
+
+        while (from <= to) {
+          _bookedDates.push(new Date(from));
+          from = new Date(from.getFullYear(), from.getMonth(),
+              from.getDate() + 1);
+        }
+    });
+
+    this.setState({bookedDates: _bookedDates})
   };
 
   handleStartDateChange = (from) => {
     this.setState({startDate: from});
 
     const to = this.state.endDate;
-    const fromValue = from ? new Date(from).toISOString().slice(0, 10) : '';
-    const toValue = to ? new Date(to).toISOString().slice(0, 10) : '';
+    const fromValue = from ? new Date(from).toISOString().slice(0, 10) : ''; //todo vk: fix it with moment.js
+    const toValue = to ? new Date(to).toISOString().slice(0, 10) : ''; //todo vk: fix it with moment.js
 
     fetch(ordersURl.concat(fromPathVariable, fromValue).concat(toPathVariable,
         toValue))
@@ -53,8 +74,8 @@ export class OrdersPage extends React.Component {
     this.setState({endDate: to});
 
     const from = this.state.startDate;
-    const fromValue = from ? new Date(from).toISOString().slice(0, 10) : '';
-    const toValue = to ? new Date(to).toISOString().slice(0, 10) : '';
+    const fromValue = from ? new Date(from).toISOString().slice(0, 10) : ''; //todo vk: fix it with moment.js
+    const toValue = to ? new Date(to).toISOString().slice(0, 10) : ''; //todo vk: fix it with moment.js
 
     fetch(ordersURl.concat(fromPathVariable, fromValue).concat(toPathVariable,
         toValue))
@@ -85,6 +106,8 @@ export class OrdersPage extends React.Component {
                         id="basic-addon1">FROM</span>
                   </div>
                   <DatePicker
+                      todayButton={"Today"}
+                      highlightDates={this.state.bookedDates}
                       dateFormat={dateFormat}
                       selected={startDate}
                       onChange={this.handleStartDateChange}
@@ -101,6 +124,8 @@ export class OrdersPage extends React.Component {
                         id="basic-addon1">TO</span>
                   </div>
                   <DatePicker
+                      highlightDates={this.state.bookedDates}
+                      todayButton={"Today"}
                       dateFormat={dateFormat}
                       selected={endDate}
                       onChange={this.handleEndDateChange}
@@ -110,7 +135,8 @@ export class OrdersPage extends React.Component {
             </DatePickerWrapper>
 
             <DatePickerWrapper>
-              <LoadingButton from={startDate} to={endDate}
+              <LoadingButton from={startDate}
+                             to={endDate}
                              url={ordersReportUrl}/>
             </DatePickerWrapper>
 

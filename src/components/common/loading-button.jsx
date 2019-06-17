@@ -31,8 +31,8 @@ export class LoadingButton extends React.Component {
         'Content-Type': docxContentType
       });
 
-      const fromValue = from ? new Date(from).toISOString().slice(0, 10) : '';
-      const toValue = to ? new Date(to).toISOString().slice(0, 10) : '';
+      const fromValue = from ? new Date(from).toISOString().slice(0, 10) : ''; //todo vk: fix it with moment.js
+      const toValue = to ? new Date(to).toISOString().slice(0, 10) : ''; //todo vk: fix it with moment.js
 
       fetch(
           url.concat(fromPathVariable, fromValue, toPathVariable, toValue),
