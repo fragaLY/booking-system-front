@@ -12,20 +12,25 @@ import {
 } from './styles';
 import {guestOptions, housesOptions} from './options';
 
-const costUrl = 'http://35.204.250.139:8080/api/cost';
+const usersUrl = 'http://35.204.250.139:8080/api/users';
+const costUrl = 'http://35.204.250.139:8080/api/orders/cost';
 const defaultCostMessage = 'Please select house(s) and amount of guests';
+const fromPathVariable = '?from=';
+const toPathVariable = '&to=';
+const guestsPathVariable = '&guests=';
 
-function getCost(orderSettings) {
+function getCost(from, to, guests) {
 
   let _cost = "Please select house(s) and amount of guests";
+  const fromValue = from ? new Date(from).toISOString().slice(0, 10) : ''; //todo vk: fix it with moment.js
+  const toValue = to ? new Date(to).toISOString().slice(0, 10) : ''; //todo vk: fix it with moment.js
 
-  fetch(costUrl, {
-    method: 'GET',
-    headers: {"Content-type": "application/json"},
-    body: JSON.stringify(orderSettings)
-  })
+  fetch(costUrl.concat(fromPathVariable, fromValue)
+      .concat(toPathVariable, toValue)
+      .concat(guestsPathVariable, guests.value))
+
       .then(result => result.json())
-      .then(json => _cost = json.cost)
+      .then(json => _cost = json.value)
       .catch(error => console.error(error));
 
   return _cost;
@@ -39,8 +44,8 @@ export class Booking extends React.Component {
     startDate: '',
     endDate: '',
     isClearable: true,
-    prices: [],
     homes: [],
+    users: [],
     guests: '',
     excludeDates: [],
     cost: defaultCostMessage
@@ -67,6 +72,11 @@ export class Booking extends React.Component {
           });
         })
         .catch(error => console.error(error));
+
+    fetch(usersUrl)
+        .then(result => result.json())
+        .then(json => this.setState({users: json.users}))
+        .catch(error => console.error(error));
   };
 
   abortController = new AbortController();
@@ -76,14 +86,8 @@ export class Booking extends React.Component {
     let validForm = from && this.state.endDate && this.state.guests
         && this.state.homes && this.state.homes.length > 0;
 
-    let orderSettings = {
-      from: from,
-      to: this.state.endDate,
-      homes: this.state.homes,
-      guests: this.state.guests
-    };
-
-    let _cost = validForm ? getCost(orderSettings) : defaultCostMessage;
+    let _cost = validForm ? getCost(from, this.state.endDate, this.state.guests)
+        : defaultCostMessage;
 
     this.setState({
       startDate: from,
@@ -97,14 +101,8 @@ export class Booking extends React.Component {
     let validForm = this.state.startDate && to && this.state.guests
         && this.state.homes && this.state.homes.length > 0;
 
-    let orderSettings = {
-      from: this.state.startDate,
-      to: to,
-      homes: this.state.homes,
-      guests: this.state.guests
-    };
-
-    let _cost = validForm ? getCost(orderSettings) : defaultCostMessage;
+    let _cost = validForm ? getCost(this.state.startDate, to, this.state.guests)
+        : defaultCostMessage;
 
     this.setState({
       endDate: to,
@@ -118,14 +116,8 @@ export class Booking extends React.Component {
     let validForm = this.state.startDate && this.state.endDate && _guests
         && this.state.homes && this.state.homes.length > 0;
 
-    let orderSettings = {
-      from: this.state.startDate,
-      to: this.state.endDate,
-      homes: this.state.homes,
-      guests: _guests
-    };
-
-    let _cost = validForm ? getCost(orderSettings) : defaultCostMessage;
+    let _cost = validForm ? getCost(this.state.startDate, this.state.endDate,
+        _guests) : defaultCostMessage;
 
     this.setState({
       guests: _guests,
@@ -138,20 +130,18 @@ export class Booking extends React.Component {
     let validForm = this.state.startDate && this.state.endDate
         && this.state.guests && _homes && _homes.length > 0;
 
-    let orderSettings = {
-      from: this.state.startDate,
-      to: this.state.endDate,
-      homes: _homes,
-      guests: this.state.guests
-    };
-
-    let _cost = validForm ? getCost(orderSettings) : defaultCostMessage;
+    let _cost = validForm ? getCost(this.state.startDate, this.state.endDate,
+        this.state.guests) : defaultCostMessage;
 
     this.setState({
       homes: _homes,
       hasChanges: validForm,
       cost: _cost
     });
+  };
+
+  handleUsersChange = (user) => {
+
   };
 
   componentWillUnmount() {
@@ -209,6 +199,21 @@ export class Booking extends React.Component {
                         excludeDates={this.state.excludeDates}
                         placeholderText='To'
                     />
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <div className="input-group mb-3">
+                    <div className="input-group-prepend">
+                  <span className="input-group-text"
+                        id="basic-addon1">USER</span>
+                    </div>
+                    <SelectWrapper>
+                      <Select
+                          options={this.state.users}
+                          onChange={this.handleUsersChange}
+                      />
+                    </SelectWrapper>
                   </div>
                 </div>
 

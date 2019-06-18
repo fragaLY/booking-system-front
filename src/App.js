@@ -10,7 +10,6 @@ import {MainPage} from './pages/main';
 import {OrdersPage} from './pages/orders';
 import {UsersPage} from './pages/users';
 import {UserPage} from './pages/profile';
-import {PricesPage} from './pages/prices';
 import {Booking} from './pages/booking-page';
 
 export class App extends React.Component {
@@ -25,7 +24,6 @@ export class App extends React.Component {
             <Route exact path='/users' component={UsersPage} />
             <Route exact path='/orders' component={OrdersPage} />
             <Route exact path='/profile' component={UserPage} />
-            <Route exact path='/prices' component={PricesPage} />
             <Route exact path='/book' component={Booking} />
           </Switch>
           <Footer>booking system</Footer>
