@@ -31,6 +31,8 @@ function getCost(orderSettings) {
   return _cost;
 }
 
+const ordersURl = 'http://35.204.250.139:8080/api/orders';
+
 export class Booking extends React.Component {
 
   state = {
@@ -40,8 +42,31 @@ export class Booking extends React.Component {
     prices: [],
     homes: [],
     guests: '',
-    excludeDates: '',
+    excludeDates: [],
     cost: defaultCostMessage
+  };
+
+  componentDidMount() {
+    let _bookedDates = [];
+
+    fetch(ordersURl)
+        .then(result => result.json())
+        .then(json => {
+          json.orders.forEach(order => {
+            let from = new Date(order.from);
+            let to = new Date(order.to);
+
+            while (from <= to) {
+              _bookedDates.push(new Date(from));
+              from = new Date(from.getFullYear(), from.getMonth(),
+                  from.getDate() + 1);
+            }
+          });
+          this.setState({
+            excludeDates: _bookedDates
+          });
+        })
+        .catch(error => console.error(error));
   };
 
   abortController = new AbortController();
