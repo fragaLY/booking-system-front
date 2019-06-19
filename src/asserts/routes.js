@@ -14,5 +14,13 @@ export const routes = [
   {
     text: 'Orders',
     to: '/orders'
+  },
+  {
+    text: 'Login',
+    to: '/login'
+  },
+  {
+    text: 'Accounts',
+    to: '/accounts'
   }
 ];

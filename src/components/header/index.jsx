@@ -16,7 +16,7 @@ export class Header extends React.Component {
           as={NavItem} to='/'
           style={{ color: 'black', fontSize: '2.4rem' }}
         >
-          Booking System
+          Bely Ptah
         </Logo>
         <RoutesWrapper>
           {
