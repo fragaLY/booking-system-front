@@ -4,6 +4,7 @@ import {HeaderWrapper, Logo, NavItem, RoutesWrapper} from './styles';
 import {routes} from '../../asserts/routes';
 import NavLink from "react-bootstrap/NavLink";
 import Image from "react-bootstrap/Image";
+import login from './login.png';
 
 export class Header extends React.Component {
   render() {
@@ -19,7 +20,7 @@ export class Header extends React.Component {
             {
               routes.map(route =>
                   route.text === 'Login'
-                      ? <Image as={NavLink} src={'asset(\'login.png\')'} to={route.to} key={route.text} activestyle={{ color: '#0071ba', backgroundColor: '#fafafa' }} roundedCircle/>
+                      ? <Image as={NavLink} src={require(login)} to={route.to} key={route.text} activestyle={{ color: '#0071ba', backgroundColor: '#fafafa' }} roundedCircle/>
                       : <NavItem to={route.to} children={route.text} key={route.text} activestyle={{ color: '#0071ba', backgroundColor: '#fafafa' }}/>
               )
             }
