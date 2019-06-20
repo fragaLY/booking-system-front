@@ -19,7 +19,7 @@ export class Header extends React.Component {
             {
               routes.map(route =>
                   route.text === 'Login'
-                      ? <Image as={NavLink('/login')} src={'./login.png'} to={route.to} key={route.text} activestyle={{ color: '#0071ba', backgroundColor: '#fafafa' }} roundedCircle/>
+                      ? <Image as={NavLink} src={'asset(\'login.png\')'} to={route.to} key={route.text} activestyle={{ color: '#0071ba', backgroundColor: '#fafafa' }} roundedCircle/>
                       : <NavItem to={route.to} children={route.text} key={route.text} activestyle={{ color: '#0071ba', backgroundColor: '#fafafa' }}/>
               )
             }
