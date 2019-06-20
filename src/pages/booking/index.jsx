@@ -12,6 +12,7 @@ import {
 } from './styles';
 import {guestOptions, housesOptions} from './options';
 
+const ordersURl = 'http://35.204.250.139:8080/api/orders';
 const usersUrl = 'http://35.204.250.139:8080/api/users';
 const costUrl = 'http://35.204.250.139:8080/api/orders/cost';
 const defaultCostMessage = 'Please select house(s) and amount of guests';
@@ -36,7 +37,6 @@ function getCost(from, to, guests) {
   return _cost;
 }
 
-const ordersURl = 'http://35.204.250.139:8080/api/orders';
 
 export class Booking extends React.Component {
 
@@ -269,7 +269,6 @@ export class Booking extends React.Component {
                            aria-describedby="basic-addon1"/>
                   </div>
                 </div>
-
 
                 <button className={buttonClassValue}
                         disabled={!this.state.hasChanges}

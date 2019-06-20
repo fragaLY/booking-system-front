@@ -6,17 +6,15 @@ export const GalleryWrapper = styled.div`
   z-index: 1;
   top: 0;
   overflow-x: hidden;
-  padding-top: 20px;`
+  padding-top: 20px;
+  display: flex; 
+  flex-flow: row nowrap`
 ;
 
 export const BrickGalleryWrapper = styled.div`
-  float: left;
-  width: 50%;
   margin: 1rem 1rem 1rem 1rem;
 `;
 
 export const WoodenGalleryWrapper = styled.div`
-  float: right;
-  width: 50%;
   margin: 1rem 1rem 1rem 1rem;
 `;
